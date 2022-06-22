@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d61c93703af44b9b030f5e0498e4d7d, type: 3}
+  m_Name: CreaturesInfo
+  m_EditorClassIdentifier: 
+  _creatures:
+  - _name: Cloud
+    Prefab: {fileID: 7590857174145340259, guid: 9983febde7a23cb4986e906e696e2f85, type: 3}
+    Tag: {fileID: 11400000, guid: fe9b971944c9ed444a6a8c9ce29654ce, type: 2}
+  - _name: Junk
+    Prefab: {fileID: 4692596180801685228, guid: 9e574b5030b086a449c28077ceda3863, type: 3}
+    Tag: {fileID: 11400000, guid: b1c3cdd20a5f3244c869f46ed0f83ad7, type: 2}
+  - _name: Bolt_Junk
+    Prefab: {fileID: 7593512117553693284, guid: 1320daf0b0fba3642a5e69df887a37cf, type: 3}
+    Tag: {fileID: 11400000, guid: 8c38b83e899ae2b4d8301ce82dd35118, type: 2}
+  _cloudTag: {fileID: 11400000, guid: fe9b971944c9ed444a6a8c9ce29654ce, type: 2}
+  _junkTag: {fileID: 11400000, guid: b1c3cdd20a5f3244c869f46ed0f83ad7, type: 2}
+  _boltTag: {fileID: 11400000, guid: 8c38b83e899ae2b4d8301ce82dd35118, type: 2}
