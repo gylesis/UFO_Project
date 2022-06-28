@@ -16,6 +16,8 @@ MonoBehaviour:
     value: 50
   _cameraXSpeedMovement:
     value: 4
+  _playerStats:
+    _healthCount: 4
   _heightLevelTransitionInfo:
   - _name: Level1
     CameraHeightLevelInfo:
@@ -46,7 +48,7 @@ MonoBehaviour:
       OrthographicSize: 6
       YHeight: 27.8
     PlayerHeightLevelInfo:
-      Size: 0.004
+      Size: 0.008
       SizeTransition:
         serializedVersion: 2
         m_Curve:
@@ -154,7 +156,7 @@ MonoBehaviour:
       OrthographicSize: 50
       YHeight: 23.5
     PlayerHeightLevelInfo:
-      Size: 0.05
+      Size: 0.02
       SizeTransition:
         serializedVersion: 2
         m_Curve:

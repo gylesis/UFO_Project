@@ -28,7 +28,8 @@ namespace Project.Scripts.AI
             
             var movingPatternInfo = new MovingEntityInfo();
             movingPatternInfo.PolarVector = _movingPattern.Info.PolarVector;
-
+            movingPatternInfo.Speed = movingPattern.Info.Speed;
+            
             _movingPattern.Info = movingPatternInfo;
         }
 

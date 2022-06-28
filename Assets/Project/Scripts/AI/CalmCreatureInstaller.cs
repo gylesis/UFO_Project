@@ -1,8 +1,6 @@
-﻿using Project.Scripts.AI;
-using UnityEngine;
-using Zenject;
+﻿using Zenject;
 
-namespace Project.Scripts
+namespace Project.Scripts.AI
 {
     public class CalmCreatureInstaller : MonoInstaller
     {

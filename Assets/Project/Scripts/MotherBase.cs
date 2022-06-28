@@ -1,4 +1,5 @@
 ﻿using Project.Scripts.AI;
+using Project.Scripts.Quests;
 using UnityEngine;
 using Zenject;
 
@@ -6,10 +7,14 @@ namespace Project.Scripts
 {
     public class MotherBase : MonoBehaviour, IMovableEntity
     {
+        [SerializeField] private MotherbaseStickService _stickService;
+        
         private IMovingPattern _movingPattern;
         private CoordinatesService _coordinatesService;
-        public IMovingPattern MovingPattern => _movingPattern;
 
+        public IMovingPattern MovingPattern => _movingPattern;
+        public MotherbaseStickService StickService => _stickService;
+        
         [Inject]
         private void Init(CoordinatesService coordinatesService, MotherBaseSpawnContext context)
         {

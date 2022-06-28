@@ -9,6 +9,9 @@ namespace Project.Scripts
     {
         [SerializeField] private FloatReactiveProperty _cameraYSpeedMovement;
         [SerializeField] private FloatReactiveProperty _cameraXSpeedMovement;
+        [SerializeField] private PlayerStats _playerStats;
+
+        public PlayerStats PlayerStats => _playerStats;
         public FloatReactiveProperty CameraYSpeedMovement => _cameraYSpeedMovement;
         public FloatReactiveProperty CameraXSpeedMovement => _cameraXSpeedMovement;
 
@@ -24,7 +27,6 @@ namespace Project.Scripts
         }
     }
 
-    
     [Serializable]
     public class HeightLevelTransitionInfo
     {

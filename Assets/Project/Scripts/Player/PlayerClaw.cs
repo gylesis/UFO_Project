@@ -33,6 +33,8 @@ namespace Project.Scripts.Player
                 Debug.Log(raycastHit2D.collider.name);
                 await transform.DOMove(raycastHit2D.point, 1).AsyncWaitForCompletion();
                 
+                
+                
                 return true;
             }
 

@@ -43,7 +43,13 @@ namespace Project.Scripts.AI
         private void SwapPattern(IMovableEntity movableEntity)
         {
             IMovingPattern movingPattern = GetPattern(movableEntity);
+            
             movingPattern.CurrentAngle = movableEntity.MovingPattern.CurrentAngle;
+            MovingEntityInfo movingPatternInfo = movingPattern.Info;
+            movingPatternInfo.Speed = movableEntity.MovingPattern.Info.Speed;
+            movingPatternInfo.PolarVector = movableEntity.MovingPattern.Info.PolarVector;
+            
+            movingPattern.Info = movingPatternInfo;
             
             movableEntity.ChangeMovingPattern(movingPattern);
         }

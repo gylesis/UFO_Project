@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4569268176906953896}
   - component: {fileID: 3148259017657906229}
   - component: {fileID: 6742608772814142915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClawPlacement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.025, y: -0.716, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 819225243788409738}
   m_Father: {fileID: 5261884189510632289}
@@ -87,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5153532756534982185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +105,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.25, z: 0}
   m_LocalScale: {x: 1.3883, y: 1.3883, z: 1.3883}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8330332337688109994}
   m_Father: {fileID: 819225243788409738}
@@ -119,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140176116087575748}
   - component: {fileID: 3530689538938361831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +138,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.268236, w: 0.9633533}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.862185, y: 1.2322617, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884188805982245}
   m_RootOrder: 0
@@ -152,6 +155,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -259,7 +263,7 @@ GameObject:
   - component: {fileID: 8211682489996084457}
   - component: {fileID: 8326738396328763147}
   - component: {fileID: 6169887549008136456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Claw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,6 +280,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0.083, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5153532756534982185}
   m_Father: {fileID: 4569268176906953896}
@@ -349,7 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8330332337688109994}
   - component: {fileID: 4976318004491649639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +371,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.98388004, y: 0.98388004, z: 0.98388004}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5153532756534982185}
   m_RootOrder: 0
@@ -381,6 +387,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -431,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884188805982245}
   - component: {fileID: 5261884188805982244}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,6 +455,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.15877822, w: 0.9873143}
   m_LocalPosition: {x: 0.236, y: -0.03, z: 0}
   m_LocalScale: {x: 0.14708537, y: 0.2550282, z: 0.48490205}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 140176116087575748}
   m_Father: {fileID: 5261884190034448624}
@@ -464,6 +472,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -514,7 +523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884188846322370}
   - component: {fileID: 5261884188846322373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,6 +540,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 0.1118737, w: 0.99372244}
   m_LocalPosition: {x: -0.259, y: -0.01, z: 0}
   m_LocalScale: {x: 0.14547062, y: 0.2550282, z: 0.48490205}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8763460438728477279}
   m_Father: {fileID: 5261884190034448624}
@@ -547,6 +557,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -597,7 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884189009206434}
   - component: {fileID: 5261884189009206437}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: PlayerColliderForMisc
   m_Icon: {fileID: 0}
@@ -614,6 +625,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0.107, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884189510632289}
   m_RootOrder: 1
@@ -644,7 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884189391501922}
   - component: {fileID: 5261884189391501923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,6 +673,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5261884189898674906}
   - {fileID: 5261884190034448624}
@@ -701,7 +714,7 @@ GameObject:
   - component: {fileID: 4317578548106670658}
   - component: {fileID: 7511078921565636574}
   - component: {fileID: 5261884189510632305}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -718,6 +731,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5261884189391501922}
   - {fileID: 5261884189009206434}
@@ -837,7 +851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884189724222985}
   - component: {fileID: 5261884189724223094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: UFOLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,6 +868,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.61, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884189391501922}
   m_RootOrder: 2
@@ -869,6 +884,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -919,7 +935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884189898674906}
   - component: {fileID: 5261884189898674909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,6 +952,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.17, z: 0}
   m_LocalScale: {x: 0.6444654, y: 0.6108441, z: 0.7449319}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5261884190201944572}
   m_Father: {fileID: 5261884189391501922}
@@ -952,6 +969,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1002,7 +1020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884190034448624}
   - component: {fileID: 5261884190034448627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,6 +1037,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.386, y: 0.45499998, z: 0.7}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5261884188846322370}
   - {fileID: 5261884188805982245}
@@ -1037,6 +1056,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1087,7 +1107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884190201944572}
   - component: {fileID: 5261884190201944575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1104,6 +1124,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.017, y: 0.18, z: 0}
   m_LocalScale: {x: 0.60586, y: 0.60586, z: 0.60586}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5261884190824707716}
   m_Father: {fileID: 5261884189898674906}
@@ -1120,6 +1141,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1170,7 +1192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884190615375320}
   - component: {fileID: 5261884190615375323}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,6 +1209,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.049278986, w: 0.9987851}
   m_LocalPosition: {x: -0.011, y: -0.1, z: 0}
   m_LocalScale: {x: 0.16092609, y: 0.20950691, z: 0.53053135}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884190034448624}
   m_RootOrder: 2
@@ -1202,6 +1225,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1252,7 +1276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5261884190824707716}
   - component: {fileID: 5261884190824707719}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,6 +1293,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0.40877724, w: 0.9126342}
   m_LocalPosition: {x: 0.23767874, y: 0.18651173, z: 0}
   m_LocalScale: {x: 0.454808, y: 0.21446228, z: 0.29581004}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884190201944572}
   m_RootOrder: 0
@@ -1284,6 +1309,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1334,7 +1360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8763460438728477279}
   - component: {fileID: 3818257691058930154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,6 +1377,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.15, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5261884188846322370}
   m_RootOrder: 0
@@ -1367,6 +1394,7 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0

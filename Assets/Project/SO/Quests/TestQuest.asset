@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e25e8ab38534ad897c89aa96cf3e825, type: 3}
-  m_Name: Quest
+  m_Name: TestQuest
   m_EditorClassIdentifier: 
+  _title: "\u0421\u0433\u043E\u043D\u044F\u0439 \u0442\u0443\u0434\u0430 \u0438 \u043E\u0431\u0440\u0430\u0442\u043D\u043E"
   _goals:
   - {fileID: 11400000, guid: 9ce347b1fafecf743ba800de0fafe8a2, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 557730d29d17040499e657349468f692, type: 2}

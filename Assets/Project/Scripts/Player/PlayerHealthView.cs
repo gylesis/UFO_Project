@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -10,15 +11,18 @@ namespace Project.Scripts.AI
     {
         [SerializeField] private TMP_Text _healthText;  
         
-        private PlayerHealthService _playerHealthService;
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
-        
+        private PlayerHealthService _playerHealthService;
+
         [Inject]
         private void Init(PlayerHealthService playerHealthService)
         {
             _playerHealthService = playerHealthService;
+        }
 
-            playerHealthService.HealthChanged.TakeUntilDestroy(this).Subscribe((OnHealthChanged)).AddTo(_compositeDisposable);
+        private void Start()
+        {
+            _playerHealthService.HealthChanged.Subscribe((OnHealthChanged)).AddTo(_compositeDisposable);
         }
 
         private async void OnHealthChanged(int health)

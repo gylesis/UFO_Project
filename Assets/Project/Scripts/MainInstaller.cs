@@ -3,6 +3,7 @@ using Project.Scripts.AI;
 using Project.Scripts.Buildings;
 using Project.Scripts.Camera;
 using Project.Scripts.Player;
+using Project.Scripts.Quests;
 using UnityEngine;
 using Zenject;
 
@@ -26,13 +27,18 @@ namespace Project.Scripts
 
         [SerializeField] private RestrictionalCircle[] _restrictionalCircles;
 
+        [SerializeField] private QuestView _questView;
+        [SerializeField] private QuestsContainer _questsContainer;
+        [SerializeField] private ReachGoalsConditionComposer _reachGoalsConditionComposer;
         public override void InstallBindings()
         {
+            BindQuests();
+            
             Container.BindFactory<MotherBaseSpawnContext, MotherBase, MotherBaseFactory>()
                 .FromComponentInNewPrefab(_motherBasePrefab).AsSingle();
             
             Container.BindInterfacesAndSelfTo<HostileCreaturesCollisionsHandler>().AsSingle();
-            Container.Bind<PlayerHealthService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerHealthService>().AsSingle();
             
             Container.Bind<CreaturesInfo>().FromInstance(_creaturesInfo).AsSingle();
             
@@ -81,6 +87,16 @@ namespace Project.Scripts
             Container.BindInterfacesAndSelfTo<BuildingScavengingService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BuildingsRegistrationService>().AsSingle();
         }
+
+        private void BindQuests()
+        {
+            Container.BindInterfacesAndSelfTo<QuestsController>().AsSingle().WithArguments(_reachGoalsConditionComposer);
+
+            Container.Bind<QuestView>().FromInstance(_questView).AsSingle();
+            Container.Bind<QuestsContainer>().FromInstance(_questsContainer).AsSingle();
+        }
+        
+        
     }
 
 

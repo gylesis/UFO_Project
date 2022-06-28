@@ -29,12 +29,14 @@ namespace Project.Scripts.AI
 
             var movingPatternInfo = new MovingEntityInfo();
             movingPatternInfo.PolarVector = _movingPattern.Info.PolarVector;
-
+            movingPatternInfo.Speed = pattern.Info.Speed;
+            
             _movingPattern.Info = movingPatternInfo;
         }
 
         public void MoveTick()
         {
+            Debug.Log("tick");
             _movingPattern.Move(transform, _coordinatesService);
             transform.up = _coordinatesService.GetRadiusVector(transform.position);
         }
