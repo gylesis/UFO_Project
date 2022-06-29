@@ -14,9 +14,9 @@ namespace Project.Scripts.Player
             _playerClaw = playerClaw;
         }
 
-        public async UniTask<bool> ReleaseClaw(float height)
+        public async UniTask<bool> ReleaseClaw()
         {
-            var releaseClaw = await _playerClaw.Release(height);
+            var releaseClaw = await _playerClaw.Release();
 
             return releaseClaw;
         }

@@ -33,6 +33,7 @@ namespace Project.Scripts.Quests
         private Vector2 _startPos;
         private Vector2 _offsetedPos;
         private PlayerContainer _playerContainer;
+        private IDisposable _pullDisposable;
 
         [Inject]
         private void Init(PlayerContainer playerContainer)
@@ -40,7 +41,7 @@ namespace Project.Scripts.Quests
             _playerContainer = playerContainer;
             _reactiveButton.Clicked.Subscribe((OnShowButtonClicked));
             _startPos = new Vector2(_questContainer.localPosition.x, _questContainer.localPosition.y);
-            _offsetedPos = new Vector2(_startPos.x - 166, _startPos.y) ;
+            _offsetedPos = new Vector2(_startPos.x - 166, _startPos.y);
         }
 
         private void OnShowButtonClicked(Unit obj)
@@ -51,9 +52,9 @@ namespace Project.Scripts.Quests
         public void PullContainer()
         {
             _moveTween?.Kill();
-            
+
             _reactiveButton.gameObject.SetActive(false);
-     
+
             float moveX = _isContainerPulled ? _startPos.x : _offsetedPos.x;
 
             _moveTween = _questContainer.DOLocalMoveX(moveX, _pullDuration).SetEase(_ease).OnComplete((() =>
@@ -63,9 +64,10 @@ namespace Project.Scripts.Quests
                 _isContainerPulled = !_isContainerPulled;
             }));
         }
-        
+
         public void PullContainer(TimeSpan pullBackTime)
         {
+            _pullDisposable?.Dispose();
             _moveTween?.Kill();
 
             _reactiveButton.gameObject.SetActive(false);
@@ -78,8 +80,12 @@ namespace Project.Scripts.Quests
 
                 _isContainerPulled = !_isContainerPulled;
             }));
-            
-            Observable.Timer(pullBackTime).Take(1).Subscribe((l => PullContainer()));
+
+            _pullDisposable = Observable.Timer(pullBackTime).Take(1).Subscribe((l =>
+            {
+                if (_isContainerPulled)
+                    PullContainer();
+            }));
         }
 
         public void SetQuest(Quest quest)
@@ -95,10 +101,12 @@ namespace Project.Scripts.Quests
                 _currentGoalTitle.text = "пока квестов нет";
                 _currentGoalDescription.text = "пока квестов нет";
             }
-            
-            _currentGoalTitle.enabled = true;
-            _currentGoalTitle.text = questGoal.GoalData.Title;
-            _currentGoalDescription.text = questGoal.GoalData.Description;
+            else
+            {
+                _currentGoalTitle.enabled = true;
+                _currentGoalTitle.text = questGoal.GoalData.Title;
+                _currentGoalDescription.text = questGoal.GoalData.Description;
+            }
         }
 
         public void OnQuestComplete(Quest quest)

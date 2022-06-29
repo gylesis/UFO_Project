@@ -9,7 +9,9 @@ namespace Project.Scripts.Quests
     {
         [SerializeField] private string _title;
         [SerializeField] private QuestGoal[] _goals;
-        
+
+        public QuestGoal[] Goals => _goals;
+
         private bool _isFinished;
 
         public event Action<Quest> Completed ;
@@ -31,6 +33,11 @@ namespace Project.Scripts.Quests
             }   
         }
 
+        public bool DoContainsGoal(QuestGoal goal)
+        {
+            return _goals.FirstOrDefault(x => x == goal) != null;
+        }
+        
         private void OnGoalCompleted(QuestGoal goal)
         {
             goal.Completed -= OnGoalCompleted;

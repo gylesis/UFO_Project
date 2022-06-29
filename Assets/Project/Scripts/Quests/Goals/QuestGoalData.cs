@@ -9,7 +9,7 @@ namespace Project.Scripts.Quests
         [SerializeField] private int _id;
         [SerializeField] private string _title = "----- Title here -----";
         [TextArea] [SerializeField] private string _description = "----- Description here -----";
-        [SerializeField] private int _amount;
+        [Min(1)][SerializeField] private int _amount;
 
         public int ID => _id;
         public string Title => _title;

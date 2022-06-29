@@ -6,7 +6,8 @@ namespace Project.Scripts.Quests
     public abstract class QuestGoal : ScriptableObject   
     {
         [SerializeField] private QuestGoalData _goalData;
-        [SerializeField] bool _isFinished;
+         
+        private bool _isFinished;
 
         public bool IsFinished => _isFinished;
         public QuestGoalData GoalData => _goalData;
@@ -26,7 +27,7 @@ namespace Project.Scripts.Quests
 
         private void ProcessInternal(int value = 1)
         {
-            Debug.Log( $" goal {_goalData.Title} process");
+            Debug.Log( $"Goal: {_goalData.Title} processes by {value}");
             
             _goalData.CurrentAmount += value;
             _goalData.CurrentAmount = Mathf.Clamp(_goalData.CurrentAmount, 0, _goalData.Amount);

@@ -29,10 +29,17 @@ namespace Project.Scripts
 
         [SerializeField] private QuestView _questView;
         [SerializeField] private QuestsContainer _questsContainer;
-        [SerializeField] private ReachGoalsConditionComposer _reachGoalsConditionComposer;
+        [SerializeField] private ReachDestinationGoalsConditionComposer _reachDestinationGoalsConditionComposer;
+
+        [SerializeField] private Transform _calmCreaturesParent;
+        [SerializeField] private Transform _hostileCreaturesParent; 
+        
         public override void InstallBindings()
         {
             BindQuests();
+
+            
+            Container.Bind<BuildingScavengeService>().AsSingle();
             
             Container.BindFactory<MotherBaseSpawnContext, MotherBase, MotherBaseFactory>()
                 .FromComponentInNewPrefab(_motherBasePrefab).AsSingle();
@@ -65,40 +72,47 @@ namespace Project.Scripts
 
             Container.Bind<PlayerWallet>().AsSingle().NonLazy();
             Container.Bind<PlayerContainer>().AsSingle().NonLazy();
-            Container.Bind<PlayerCameraCondition>().AsSingle().NonLazy();
+            Container.Bind<BuildingScavengeConditionService>().AsSingle().NonLazy();
             Container.Bind<HeightRestrictService>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<MovableEntitiesWatcher>().AsSingle().NonLazy();
             
             Container.BindFactory<CalmCreatureSpawnContext, CalmCreature, CalmCreatureFactory>()
                 .FromSubContainerResolve()
-                .ByNewContextPrefab<CalmCreatureInstaller>(_calmCreaturePrefab).AsSingle();
+                .ByNewContextPrefab<CalmCreatureInstaller>(_calmCreaturePrefab)
+                .UnderTransform(_calmCreaturesParent)
+                .AsSingle();
+
+            Container.BindFactory<HostileCreatureSpawnContext, HostileCreature, HostileCreaturesFactory>()
+                .FromSubContainerResolve()
+                .ByNewContextPrefab<HostileCreatureInstaller>(_hostileCreaturePrefab)
+                .UnderTransform(_hostileCreaturesParent)
+                .AsSingle();
             
             Container.Bind<Player.Player>()
                 .FromSubContainerResolve()
                 .ByNewContextPrefab(_player)
                 .UnderTransform(_playerSpawnPoint)
                 .AsSingle();
-            
-            Container.BindFactory<HostileCreatureSpawnContext, HostileCreature, HostileCreaturesFactory>()
-                .FromSubContainerResolve()
-                .ByNewContextPrefab<HostileCreatureInstaller>(_hostileCreaturePrefab).AsSingle();
-            
-            Container.BindInterfacesAndSelfTo<BuildingScavengingService>().AsSingle().NonLazy();
+
+            Container.BindInterfacesAndSelfTo<BuildingsScavengingController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<BuildingsRegistrationService>().AsSingle();
         }
 
         private void BindQuests()
         {
-            Container.BindInterfacesAndSelfTo<QuestsController>().AsSingle().WithArguments(_reachGoalsConditionComposer);
+            Container.BindInterfacesAndSelfTo<QuestsController>().AsSingle();
 
             Container.Bind<QuestView>().FromInstance(_questView).AsSingle();
             Container.Bind<QuestsContainer>().FromInstance(_questsContainer).AsSingle();
+
+            Container.Bind<QuestGoalsConditionResolver>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<ReachDestinationGoalsConditionComposer>().FromInstance(_reachDestinationGoalsConditionComposer).AsSingle();
+            Container.BindInterfacesAndSelfTo<ScavengeResourcesConditionComposer>().AsSingle();
         }
         
-        
     }
-
 
     public class MotherBaseInstaller : Installer
     {

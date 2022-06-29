@@ -36,7 +36,6 @@ namespace Project.Scripts.AI
 
         public void MoveTick()
         {
-            Debug.Log("tick");
             _movingPattern.Move(transform, _coordinatesService);
             transform.up = _coordinatesService.GetRadiusVector(transform.position);
         }

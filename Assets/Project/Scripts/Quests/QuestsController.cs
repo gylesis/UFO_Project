@@ -8,16 +8,14 @@ namespace Project.Scripts.Quests
     {
         private readonly QuestsContainer _questsContainer;
         private readonly QuestView _questView;
+        private readonly QuestGoalsConditionResolver _questGoalsConditionResolver;
 
         private Quest _currentQuest;
         private QuestGoal _currentGoal;
 
-        private ReachGoalsConditionComposer _reachGoalsConditionComposer;
-
-        public QuestsController(QuestsContainer questsContainer, QuestView questView,
-            ReachGoalsConditionComposer reachGoalsConditionComposer)
+        public QuestsController(QuestsContainer questsContainer, QuestView questView, QuestGoalsConditionResolver questGoalsConditionResolver)
         {
-            _reachGoalsConditionComposer = reachGoalsConditionComposer;
+            _questGoalsConditionResolver = questGoalsConditionResolver;
             _questView = questView;
             _questsContainer = questsContainer;
         }
@@ -43,7 +41,7 @@ namespace Project.Scripts.Quests
                 nextQuest.GoalChanged += OnQuestGoalChanged;
                 nextQuest.Completed += OnQuestCompleted;
                 nextQuest.Start();
-                
+
                 _questView.SetQuest(nextQuest);
                 _questView.PullContainer();
             }
@@ -54,25 +52,24 @@ namespace Project.Scripts.Quests
             _questView.OnQuestComplete(quest);
             _questView.PullContainer(TimeSpan.FromSeconds(1));
 
-            quest.Completed += OnQuestCompleted;
-            _reachGoalsConditionComposer.StopConditionProcessing(_currentGoal);
+            quest.Completed -= OnQuestCompleted;
+            _questGoalsConditionResolver.StopConditionProcessing(_currentGoal);
 
             if (_questsContainer.DoExistQuests() == false)
             {
                 _questView.OnQuestGoalChanged(null);
             }
-            
         }
 
         private void OnQuestGoalChanged(QuestGoal goal)
         {
             if (_currentGoal != null)
-                _reachGoalsConditionComposer.StopConditionProcessing(_currentGoal);
+                _questGoalsConditionResolver.StopConditionProcessing(_currentGoal);
 
             _questView.OnQuestGoalChanged(goal);
             _questView.PullContainer(TimeSpan.FromSeconds(3));
-            
-            _reachGoalsConditionComposer.StartConditionProcessing(goal);
+
+            _questGoalsConditionResolver.StartConditionProcessing(goal);
 
             _currentGoal = goal;
         }
@@ -83,7 +80,7 @@ namespace Project.Scripts.Quests
             {
                 StartNextQuest();
             }
-            
+
             if (Input.GetKeyDown(KeyCode.K))
             {
                 StartNextQuest();
@@ -101,7 +98,7 @@ namespace Project.Scripts.Quests
             {
                 _currentQuest.Dispose();
                 _currentQuest.GoalChanged -= OnQuestGoalChanged;
-                _reachGoalsConditionComposer.StopConditionProcessing(_currentGoal);
+                _questGoalsConditionResolver.StopConditionProcessing(_currentGoal);
             }
         }
     }

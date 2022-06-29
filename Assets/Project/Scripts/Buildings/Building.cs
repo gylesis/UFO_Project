@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Project.Scripts.Buildings
@@ -8,51 +9,49 @@ namespace Project.Scripts.Buildings
         [SerializeField] private BuildingView _buildingView;
         [SerializeField] private Transform _maxHeightPoint;
         [SerializeField] private BuildingScavengeTrigger _scavengeTrigger;
-        [SerializeField] private LayerMask _layerMask;
-
-        [SerializeField] private float _height;
+        [SerializeField] private BuildingResourceType _buildingResourceType;
         
         private CoordinatesService _coordinatesService;
         public BuildingData Data { get; private set; }
         public BuildingScavengeTrigger ScavengeTrigger => _scavengeTrigger;
-
         public Transform MaxHeightPoint => _maxHeightPoint;
         
         [Inject]
         private void Init(CoordinatesService coordinatesService)
         {
             _coordinatesService = coordinatesService;
+            
             float height = GetHeightOfBuilding();
-            _height = height;
             
             var buildingResourcesData = new BuildingResourcesData();
-            buildingResourcesData.Tenge = 2000;
+            buildingResourcesData.Resource = 2000;
+            buildingResourcesData.ResourceType = _buildingResourceType;
+
+            Color color = Color.blue;
+
+            switch (_buildingResourceType)
+            {
+                case BuildingResourceType.Blue:
+                    color = Color.blue;
+                    break;
+                case BuildingResourceType.Yellow:
+                    color = Color.yellow;
+                    break;
+                case BuildingResourceType.Red:
+                    color = Color.red;
+                    break;
+            }
+
+            _buildingView.SetSpriteColor(color);
             
             Data = new BuildingData(height, buildingResourcesData);
         }
-
+       
         private float GetHeightOfBuilding()
         {
             var radius = _coordinatesService.GetRadius(_maxHeightPoint.position);
 
             return radius;
-        }
-    }
-
-    public class BuildingResourcesData
-    {
-        public int Tenge;
-    }
-    
-    public class BuildingData
-    {
-        public float Height { get; }
-
-        public BuildingResourcesData BuildingResourcesData { get; }
-        public BuildingData(float height, BuildingResourcesData buildingResourcesData)
-        {
-            Height = height;
-            BuildingResourcesData = buildingResourcesData;
         }
     }
 }

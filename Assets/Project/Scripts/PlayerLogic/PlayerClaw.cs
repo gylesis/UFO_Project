@@ -20,7 +20,7 @@ namespace Project.Scripts.Player
         private bool _released;
         private IDisposable _stickDisposable;
 
-        public async UniTask<bool> Release(float height)
+        public async UniTask<bool> Release()
         {
             _collider2D.enabled = true;
             _clawSprite.enabled = true;
@@ -29,11 +29,7 @@ namespace Project.Scripts.Player
 
             if (raycastHit2D)
             {
-               // transform.position = raycastHit2D.point;
-                Debug.Log(raycastHit2D.collider.name);
                 await transform.DOMove(raycastHit2D.point, 1).AsyncWaitForCompletion();
-                
-                
                 
                 return true;
             }
@@ -62,7 +58,6 @@ namespace Project.Scripts.Player
 
             while (distance > 0.01f)
             {
-                Debug.Log("Come");
                 transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, _lerpSpeed * Time.deltaTime);
                 
                 distance = (_place.position - transform.position).sqrMagnitude;
@@ -80,7 +75,6 @@ namespace Project.Scripts.Player
         {
             if (other.gameObject.TryGetComponent<Building>(out var building))
             {
-                Debug.Log("sss");
                 _released = true;
                 
                 Vector2 closestPoint = other.ClosestPoint(transform.position);

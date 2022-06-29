@@ -5,12 +5,12 @@ namespace Project.Scripts.Buildings
 {
     public class BuildingsScavengingHandler : IDisposable
     {
-        private readonly BuildingScavengingService _buildingScavengingService;
+        private readonly BuildingsScavengingController _buildingsScavengingController;
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        public BuildingsScavengingHandler(BuildingScavengeTrigger[] scavengeTriggers, BuildingScavengingService buildingScavengingService)
+        public BuildingsScavengingHandler(BuildingScavengeTrigger[] scavengeTriggers, BuildingsScavengingController buildingsScavengingController)
         {
-            _buildingScavengingService = buildingScavengingService;
+            _buildingsScavengingController = buildingsScavengingController;
             
             foreach (BuildingScavengeTrigger buildingScavengeTrigger in scavengeTriggers)
             {
@@ -20,19 +20,12 @@ namespace Project.Scripts.Buildings
         }
 
         private void OnTriggerExit(Building building) => 
-            _buildingScavengingService.StopScavenging(building);
+            _buildingsScavengingController.StopScavenging();
 
         private void OnBuildingScavenge(Building building) => 
-            _buildingScavengingService.StartScavenging(building);
+            _buildingsScavengingController.StartPollingToScavenge(building);
 
         public void Dispose() => 
             _compositeDisposable.Dispose();
     }
-
-
-    public class BuildingResource
-    {
-        
-    }
-    
 }
