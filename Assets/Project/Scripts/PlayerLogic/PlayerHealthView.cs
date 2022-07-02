@@ -18,10 +18,6 @@ namespace Project.Scripts.AI
         private void Init(PlayerHealthService playerHealthService)
         {
             _playerHealthService = playerHealthService;
-        }
-
-        private void Start()
-        {
             _playerHealthService.HealthChanged.Subscribe((OnHealthChanged)).AddTo(_compositeDisposable);
         }
 
