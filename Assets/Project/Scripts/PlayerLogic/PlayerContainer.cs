@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerContainer
     {
@@ -11,6 +11,8 @@ namespace Project.Scripts.Player
         private readonly Player _player;
 
         public Player Player => _player;
+
+        public bool IsInvulnerable { get; private set; }
 
         public PlayerContainer(Player player)
         {
@@ -23,21 +25,24 @@ namespace Project.Scripts.Player
 
             _player.PlayerView.ColorUFO(Color.gray);
         }
-        
+
         public void MakeInvulnerable(TimeSpan timeSpan)
         {
+            IsInvulnerable = true;
             _player.CollisionCollider.enabled = false;
 
             _player.PlayerView.ColorUFO(Color.gray);
-            Observable.Timer(timeSpan).TakeUntilDestroy(_player.Transform).Subscribe((l => MakeVulnerable()));
+            Observable.Timer(timeSpan).Subscribe((l => MakeVulnerable()));
         }
-        
+
         public void MakeVulnerable()
         {
+            IsInvulnerable = false;
+
             _player.CollisionCollider.enabled = true;
             _player.PlayerView.ColorDefault();
         }
-        
+
         public void LerpTo(Transform target, Action onLerpEnded)
         {
             _player.PlayerController.StartLeprTo(target, onLerpEnded);

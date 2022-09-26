@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class SinMoving : IMovingPattern
     {
@@ -17,8 +17,8 @@ namespace Project.Scripts.AI
             }
 
             var sin = Mathf.Sin(CurrentAngle);
-            
-            coordinatesService.SetRadius(transform,Info.PolarVector.Radius + sin);
+
+            coordinatesService.SetRadius(transform, Info.PolarVector.Radius + sin);
 
             Vector2 polarCoords = coordinatesService.GetPolarCoords(transform.position, CurrentAngle);
 

@@ -18,6 +18,8 @@ MonoBehaviour:
     value: 4
   _playerStats:
     _healthCount: 4
+  _buildingResourcesData:
+    StartResources: 1000
   _heightLevelTransitionInfo:
   - _name: Level1
     CameraHeightLevelInfo:

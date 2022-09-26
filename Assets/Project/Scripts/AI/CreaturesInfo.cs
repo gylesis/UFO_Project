@@ -2,14 +2,14 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     [CreateAssetMenu(menuName = "CreaturesInfo", fileName = "CreaturesInfo", order = 0)]
     public class CreaturesInfo : ScriptableObject
     {
         [SerializeField] private CreatureInfo[] _creatures;
-       
-        [SerializeField] private CreatureTagSO _cloudTag;        
+
+        [SerializeField] private CreatureTagSO _cloudTag;
         [SerializeField] private CreatureTagSO _junkTag;
         [SerializeField] private CreatureTagSO _boltTag;
 
@@ -19,7 +19,7 @@ namespace Project.Scripts.AI
         {
             return _creatures.FirstOrDefault(x => x.Tag == _cloudTag);
         }
-        
+
         public CreatureInfo GetJunkInfo()
         {
             return _creatures.FirstOrDefault(x => x.Tag == _junkTag);
@@ -29,7 +29,7 @@ namespace Project.Scripts.AI
         {
             return _creatures.FirstOrDefault(x => x.Tag == _boltTag);
         }
-        
+
         private void OnValidate()
         {
             foreach (CreatureInfo creatureInfo in _creatures)

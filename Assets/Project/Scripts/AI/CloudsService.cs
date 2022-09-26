@@ -3,14 +3,14 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class CloudsService : MonoBehaviour
     {
         [SerializeField] private int _cloudsCountToSpawn = 100;
 
         private readonly List<CalmCreature> _calmCreatures = new List<CalmCreature>();
-      
+
         private CalmCreatureFactory _calmCreatureFactory;
         private MovableEntitiesWatcher _movableEntitiesWatcher;
         private CreaturesInfo _creaturesInfo;
@@ -43,29 +43,38 @@ namespace Project.Scripts.AI
             var firstLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(1);
 
             var radiusOfLvlFirstAndTwo = secondLevelRadius - firstLevelRadius;
-            
+
             for (int i = 1; i <= _cloudsCountToSpawn; i++)
             {
                 var calmCreatureSpawnContext = new CalmCreatureSpawnContext();
 
                 calmCreatureSpawnContext.CreatureInfo = creatureInfo;
-                
+
                 var angle = Random.Range(0, 360f);
                 var speed = Random.Range(0.02f, 0.06f);
-                int radius = Random.Range(firstLevelRadius, secondLevelRadius - ((10 / 100) * radiusOfLvlFirstAndTwo ));
+                int radius = Random.Range(firstLevelRadius, secondLevelRadius - ((10 / 100) * radiusOfLvlFirstAndTwo));
                 var polarVector = new PolarVector(radius, angle);
 
                 calmCreatureSpawnContext.Pos = polarVector;
 
                 //IMovingPattern movingPattern = GetRandomPattern();
-                IMovingPattern movingPattern = new StraightMoving();
+                IMovingPattern movingPattern;
+
+                if (Random.value > 0.5f)
+                {
+                    movingPattern = new StraightMoving();
+                }
+                else
+                {
+                    movingPattern = new BackwardMoving();
+                }
 
                 var movingPatternInfo = new MovingEntityInfo();
                 movingPatternInfo.PolarVector = polarVector;
                 movingPatternInfo.Speed = speed;
-                
+
                 movingPattern.Info = movingPatternInfo;
-                
+
                 calmCreatureSpawnContext.MovingPattern = movingPattern;
                 calmCreatureSpawnContext.Speed = speed;
 
@@ -74,7 +83,7 @@ namespace Project.Scripts.AI
                 var needToBeOverPlayer = Random.value >= 0.7f;
 
                 calmCreature.SpriteRenderer.sortingOrder = needToBeOverPlayer == true ? 2 : 0;
-                
+
                 _movableEntitiesWatcher.Watch(calmCreature);
                 _calmCreatures.Add(calmCreature);
             }

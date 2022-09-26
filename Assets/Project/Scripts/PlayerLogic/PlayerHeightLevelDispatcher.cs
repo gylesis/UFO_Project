@@ -1,6 +1,4 @@
-﻿using UniRx;
-
-namespace Project.Scripts.Player
+﻿namespace Project.PlayerLogic
 {
     public class PlayerHeightLevelDispatcher
     {
@@ -10,9 +8,11 @@ namespace Project.Scripts.Player
         {
             _playerHeightLevelChangeListeners = playerHeightLevelChangeListeners;
         }
+
         public void OnSwitchHeightLevel(SwitchHeightLevelContext switchHeightLevelContext)
         {
-            foreach (IPlayerHeightLevelChangeListener playerHeightLevelChangeListener in _playerHeightLevelChangeListeners)
+            foreach (IPlayerHeightLevelChangeListener playerHeightLevelChangeListener in
+                _playerHeightLevelChangeListeners)
                 playerHeightLevelChangeListener.OnHeightLevelSwitch(switchHeightLevelContext);
         }
     }

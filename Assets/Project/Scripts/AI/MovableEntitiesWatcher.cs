@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
-using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class MovableEntitiesWatcher : IDisposable, ITickable
     {
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        private readonly Dictionary<IMovableEntity, List<IMovingPattern>> _patterns = new Dictionary<IMovableEntity, List<IMovingPattern>>();
+        private readonly Dictionary<IMovableEntity, List<IMovingPattern>> _patterns =
+            new Dictionary<IMovableEntity, List<IMovingPattern>>();
+
         private readonly IMovableEntity[] _movableEntities;
 
         public void Watch(IMovableEntity movableEntity)
         {
-            Observable.Interval(GetRandomTime(15, 40)).Subscribe((_ => SwapPattern(movableEntity))).AddTo(_compositeDisposable);
+            Observable.Interval(GetRandomTime(15, 40)).Subscribe((_ => SwapPattern(movableEntity)))
+                .AddTo(_compositeDisposable);
 
             List<IMovingPattern> patterns = new List<IMovingPattern>();
             patterns.Add(movableEntity.MovingPattern);
 
             var movingPatterns = new List<IMovingPattern>();
-            
+
             movingPatterns.Add(new StraightMoving());
             movingPatterns.Add(new BackwardMoving());
-            movingPatterns.Add(new SinMoving());    
+            movingPatterns.Add(new SinMoving());
 
             patterns = movingPatterns.Except(patterns).ToList();
 
@@ -43,14 +45,14 @@ namespace Project.Scripts.AI
         private void SwapPattern(IMovableEntity movableEntity)
         {
             IMovingPattern movingPattern = GetPattern(movableEntity);
-            
+
             movingPattern.CurrentAngle = movableEntity.MovingPattern.CurrentAngle;
             MovingEntityInfo movingPatternInfo = movingPattern.Info;
             movingPatternInfo.Speed = movableEntity.MovingPattern.Info.Speed;
             movingPatternInfo.PolarVector = movableEntity.MovingPattern.Info.PolarVector;
-            
+
             movingPattern.Info = movingPatternInfo;
-            
+
             movableEntity.ChangeMovingPattern(movingPattern);
         }
 

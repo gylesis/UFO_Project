@@ -1,19 +1,17 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using Project.Scripts.Player;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.PlayerLogic
 {
     public class PlayerDeathService : MonoBehaviour
     {
         [SerializeField] private TMP_Text _deathSign;
-        
+
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private PlayerContainer _playerContainer;
 
@@ -28,7 +26,7 @@ namespace Project.Scripts.AI
         {
             _playerContainer.Player.PlayerController.IsStickingLocked = true;
             _playerContainer.MakeInvulnerable();
-            
+
             _deathSign.enabled = true;
             _deathSign.text = "Ты сдох чел";
 

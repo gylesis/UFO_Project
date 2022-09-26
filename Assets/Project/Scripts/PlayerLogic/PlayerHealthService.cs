@@ -1,17 +1,16 @@
 ﻿using System;
-using Project.Scripts.Player;
 using UniRx;
 using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.PlayerLogic
 {
     public class PlayerHealthService : IInitializable
     {
         public Subject<int> HealthChanged { get; } = new Subject<int>();
         public Subject<Unit> Died { get; } = new Subject<Unit>();
-        
+
         private int _health = 3;
-        
+
         private readonly PlayerContainer _playerContainer;
         private Config _config;
 
@@ -30,6 +29,8 @@ namespace Project.Scripts.AI
 
         public void ApplyDamage(int damage)
         {
+            if (_playerContainer.IsInvulnerable) return;
+
             _health -= damage;
 
             if (_health <= 0)
@@ -37,7 +38,7 @@ namespace Project.Scripts.AI
                 _health = 0;
                 Died.OnNext(Unit.Default);
             }
-            
+
             HealthChanged.OnNext(_health);
             _playerContainer.MakeInvulnerable(TimeSpan.FromSeconds(2));
         }

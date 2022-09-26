@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerView : MonoBehaviour
     {

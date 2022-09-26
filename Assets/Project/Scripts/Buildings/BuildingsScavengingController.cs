@@ -1,10 +1,10 @@
 ﻿using System;
-using Project.Scripts.Player;
+using Project.PlayerLogic;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingsScavengingController : IDisposable, ITickable
     {
@@ -19,7 +19,9 @@ namespace Project.Scripts.Buildings
         private bool _isPlayerScavenging;
         private BuildingScavengeService _buildingScavengeService;
 
-        public BuildingsScavengingController(PlayerContainer playerContainer, BuildingScavengeConditionService buildingScavengeConditionService, BuildingScavengeService buildingScavengeService)
+        public BuildingsScavengingController(PlayerContainer playerContainer,
+            BuildingScavengeConditionService buildingScavengeConditionService,
+            BuildingScavengeService buildingScavengeService)
         {
             _buildingScavengeService = buildingScavengeService;
             _buildingScavengeConditionService = buildingScavengeConditionService;
@@ -48,15 +50,17 @@ namespace Project.Scripts.Buildings
 
         private async void StartScavenging(Building building)
         {
+            if (_buildingScavengeService.AbleToScavenge(building) == false) return;
+
             var successClawRelease = await _playerContainer.Player.PlayerClawController.ReleaseClaw();
 
             if (successClawRelease == false) return;
 
-            if (_buildingScavengeService.AbleToScavenge(building) == false) return;
             _buildingScavengeService.Scavenge(building);
             _isPlayerScavenging = true;
-            
+
             _scavengeStream?.Dispose();
+
             _scavengeStream = Observable.Interval(TimeSpan.FromMilliseconds(1000)).Subscribe(((_) =>
             {
                 if (_buildingScavengeService.AbleToScavenge(building) == false)
@@ -66,12 +70,13 @@ namespace Project.Scripts.Buildings
                 }
 
                 _buildingScavengeService.Scavenge(building);
-                
             })).AddTo(_compositeDisposable);
         }
 
         public void StopScavenging()
         {
+            if (_isPlayerScavenging == false) return;
+
             Debug.Log("stop scavenge");
             _isPlayerScavenging = false;
 

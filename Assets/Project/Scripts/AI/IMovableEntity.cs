@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.AI
+﻿namespace Project.AI
 {
     public interface IMovableEntity
     {
@@ -6,6 +6,5 @@
         void ChangeMovingPattern(IMovingPattern movingPattern);
 
         void MoveTick();
-
     }
 }

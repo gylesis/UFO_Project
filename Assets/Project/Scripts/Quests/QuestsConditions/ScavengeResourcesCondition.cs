@@ -1,10 +1,10 @@
 ﻿using System;
-using Project.Scripts.Buildings;
-using Project.Scripts.Player;
+using Project.Buildings;
+using Project.Quests.Goals;
 using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.QuestsConditions
 {
     public class ScavengeResourcesCondition : QuestConditionProcessor
     {
@@ -14,7 +14,8 @@ namespace Project.Scripts.Quests
         private ScavengeResourcesGoal _goal;
         private BuildingsScavengingController _buildingsScavengingController;
 
-        public ScavengeResourcesCondition(BuildingsScavengingController buildingsScavengingController, BuildingScavengeService buildingScavengeService, ScavengeResourcesGoal questGoal)
+        public ScavengeResourcesCondition(BuildingsScavengingController buildingsScavengingController,
+            BuildingScavengeService buildingScavengeService, ScavengeResourcesGoal questGoal)
         {
             _buildingsScavengingController = buildingsScavengingController;
             _goal = questGoal;
@@ -24,7 +25,7 @@ namespace Project.Scripts.Quests
         public override void StartProcessing()
         {
             Debug.Log("started processing");
-            
+
             _disposable = _buildingScavengeService.ResourcesScavenged.Subscribe((context =>
             {
                 var scavenged = 0;
@@ -42,7 +43,7 @@ namespace Project.Scripts.Quests
                 }
 
                 _goal.Process(scavenged);
-            }));    
+            }));
         }
 
         public override void StopProcessing()

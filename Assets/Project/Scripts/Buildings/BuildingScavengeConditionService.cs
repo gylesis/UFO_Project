@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Project.Scripts.Camera;
-using Project.Scripts.Player;
+using Project.Camera;
+using Project.PlayerLogic;
 using UnityEngine;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingScavengeConditionService
     {

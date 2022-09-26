@@ -1,20 +1,19 @@
-﻿using Project.Scripts.AI;
-using Project.Scripts.Quests;
+﻿using Project.AI;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts
+namespace Project.MotherbaseLogic
 {
     public class MotherBase : MonoBehaviour, IMovableEntity
     {
         [SerializeField] private MotherbaseStickService _stickService;
-        
+
         private IMovingPattern _movingPattern;
         private CoordinatesService _coordinatesService;
 
         public IMovingPattern MovingPattern => _movingPattern;
         public MotherbaseStickService StickService => _stickService;
-        
+
         [Inject]
         private void Init(CoordinatesService coordinatesService, MotherBaseSpawnContext context)
         {
@@ -35,7 +34,7 @@ namespace Project.Scripts
 
         public void MoveTick()
         {
-            _movingPattern.Move(transform,_coordinatesService);
+            _movingPattern.Move(transform, _coordinatesService);
 
             transform.up = _coordinatesService.GetRadiusVector(transform.position);
         }

@@ -1,9 +1,8 @@
 ﻿using System;
 using UniRx;
 using UnityEngine;
-using Zenject;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerHeightCheckService : IDisposable
     {
@@ -39,6 +38,7 @@ namespace Project.Scripts.Player
         {
             GoNextHeightLevel();
         }
+
         private void SetHeightLevel(int level)
         {
             _currentLevel = level;

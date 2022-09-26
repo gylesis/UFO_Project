@@ -1,10 +1,10 @@
 ﻿using System;
 using DG.Tweening;
-using Project.Scripts.AI;
+using Project.AI;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerController : MyMonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace Project.Scripts.Player
         public bool IsStickingLocked { get; set; }
 
         [Inject]
-        private void Init(HeightRestrictService heightRestrictService, 
+        private void Init(HeightRestrictService heightRestrictService,
             InputService inputService)
         {
             _inputService = inputService;
@@ -41,18 +41,19 @@ namespace Project.Scripts.Player
             Rotation();
 
             Move();
-             // Move2();
+            // Move2();
         }
 
         public void SetXSpeed(float speed)
         {
             DOVirtual.Float(_speedX, speed, 0.5f, (value => _speedX = value));
         }
+
         public void SetYSpeed(float speed)
         {
             DOVirtual.Float(_speedY, speed, 0.5f, (value => _speedY = value));
         }
-        
+
         private void Rotation()
         {
             Vector2 radiusVector = CoordinatesService.GetRadiusVector(transform.position);
@@ -89,13 +90,14 @@ namespace Project.Scripts.Player
             if (_inputService.TouchDelta.magnitude != 0)
             {
                 Vector2 radiusVector = CoordinatesService.GetRadiusVector(_movePos);
-                Vector3 direction = Vector3.Cross(radiusVector.normalized, Vector3.forward * _inputService.TouchDelta.normalized.x);
+                Vector3 direction = Vector3.Cross(radiusVector.normalized,
+                    Vector3.forward * _inputService.TouchDelta.normalized.x);
 
                 _movePos = transform.position + direction * _krutilka;
             }
 
             Vector3 gg = transform.position + (_movePos - transform.position).normalized;
-            
+
             var radius = CoordinatesService.GetRadius(_movePos);
 
             radius += _inputService.TouchDelta.y * _speedY;

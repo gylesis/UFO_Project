@@ -1,11 +1,11 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Project.Scripts.Buildings;
+using Project.Buildings;
 using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerClaw : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace Project.Scripts.Player
         [SerializeField] private Transform _stickingTransform;
         [SerializeField] private float _lerpSpeed = 1f;
         [SerializeField] private LayerMask _buildingLayer;
-        
+
         private bool _released;
         private IDisposable _stickDisposable;
 
@@ -25,12 +25,12 @@ namespace Project.Scripts.Player
             _collider2D.enabled = true;
             _clawSprite.enabled = true;
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, -transform.up, 100,_buildingLayer);
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, -transform.up, 100, _buildingLayer);
 
             if (raycastHit2D)
             {
                 await transform.DOMove(raycastHit2D.point, 1).AsyncWaitForCompletion();
-                
+
                 return true;
             }
 
@@ -39,27 +39,25 @@ namespace Project.Scripts.Player
 
         private void Stick(Vector3 stickPos)
         {
-            _stickDisposable = Observable.EveryUpdate().Subscribe((l =>
-            {
-                _stickingTransform.position = stickPos;
-            }));
+            _stickDisposable = Observable.EveryUpdate().Subscribe((l => { _stickingTransform.position = stickPos; }));
         }
 
         public void StopSticking()
         {
             _stickDisposable?.Dispose();
         }
-        
+
         public async UniTask PullBack()
         {
             StopSticking();
-            
+
             var distance = (_place.position - transform.position).sqrMagnitude;
 
             while (distance > 0.01f)
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, _lerpSpeed * Time.deltaTime);
-                
+                transform.localPosition =
+                    Vector3.Lerp(transform.localPosition, Vector3.zero, _lerpSpeed * Time.deltaTime);
+
                 distance = (_place.position - transform.position).sqrMagnitude;
                 await UniTask.Yield();
             }
@@ -76,9 +74,9 @@ namespace Project.Scripts.Player
             if (other.gameObject.TryGetComponent<Building>(out var building))
             {
                 _released = true;
-                
+
                 Vector2 closestPoint = other.ClosestPoint(transform.position);
-                
+
                 Stick(closestPoint);
             }
             else if (other.gameObject.TryGetComponent<Planet>(out var planet))
@@ -86,7 +84,6 @@ namespace Project.Scripts.Player
                 _released = true;
                 PullBack();
             }
-            
         }
     }
 }

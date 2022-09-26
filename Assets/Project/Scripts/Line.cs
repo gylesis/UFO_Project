@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts
+namespace Project
 {
     public class Line : MonoBehaviour
     {
         [SerializeField] private LineMarker _lineMarker;
 
-        
+
         [ContextMenu("Draw")]
         private void Execute()
         {
@@ -16,8 +16,8 @@ namespace Project.Scripts
             {
                 Vector2 pos = transform.position;
                 pos.y = i;
-                
-                LineMarker lineMarker = Instantiate(_lineMarker, pos,Quaternion.identity,transform);
+
+                LineMarker lineMarker = Instantiate(_lineMarker, pos, Quaternion.identity, transform);
 
                 if (i % 10 == 0)
                 {
@@ -25,6 +25,7 @@ namespace Project.Scripts
                     transformLocalScale *= 1.5f;
                     lineMarker.transform.localScale = transformLocalScale;
                 }
+
                 lineMarker.Text.text = $"{i}m";
             }
         }

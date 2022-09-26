@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     [Serializable]
     public class PlayerWalletData

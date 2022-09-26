@@ -3,12 +3,12 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerWalletView : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _tengeView;   
-        
+        [SerializeField] private TMP_Text _tengeView;
+
         [Inject]
         private void Init(PlayerWallet playerWallet)
         {
@@ -19,6 +19,5 @@ namespace Project.Scripts.Player
         {
             _tengeView.text = walletData.Tenge.ToString();
         }
-        
     }
 }

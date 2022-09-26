@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts
+﻿namespace Project
 {
     public static class Constants
     {

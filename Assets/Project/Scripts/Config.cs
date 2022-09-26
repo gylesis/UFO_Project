@@ -2,7 +2,7 @@
 using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts
+namespace Project
 {
     [CreateAssetMenu(menuName = "StaticData/Config", fileName = "Config", order = 0)]
     public class Config : ScriptableObject
@@ -10,7 +10,9 @@ namespace Project.Scripts
         [SerializeField] private FloatReactiveProperty _cameraYSpeedMovement;
         [SerializeField] private FloatReactiveProperty _cameraXSpeedMovement;
         [SerializeField] private PlayerStats _playerStats;
+        [SerializeField] private BuildingResourcesData _buildingResourcesData;
 
+        public BuildingResourcesData BuildingResourcesData => _buildingResourcesData;
         public PlayerStats PlayerStats => _playerStats;
         public FloatReactiveProperty CameraYSpeedMovement => _cameraYSpeedMovement;
         public FloatReactiveProperty CameraXSpeedMovement => _cameraXSpeedMovement;
@@ -28,6 +30,12 @@ namespace Project.Scripts
     }
 
     [Serializable]
+    public class BuildingResourcesData
+    {
+        public int StartResources;
+    }
+
+    [Serializable]
     public class HeightLevelTransitionInfo
     {
         [HideInInspector] public string _name;
@@ -41,7 +49,7 @@ namespace Project.Scripts
         public float Size;
         public AnimationCurve SizeTransition;
     }
-    
+
     [Serializable]
     public class CameraHeightLevelInfo
     {
@@ -49,6 +57,4 @@ namespace Project.Scripts
         public float OrthographicSize;
         public float YHeight;
     }
-    
-    
 }

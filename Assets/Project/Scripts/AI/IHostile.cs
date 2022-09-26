@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.AI
+﻿namespace Project.AI
 {
     public interface IHostile { }
 }

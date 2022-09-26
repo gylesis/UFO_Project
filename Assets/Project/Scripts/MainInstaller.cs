@@ -1,19 +1,20 @@
 ﻿using System.Linq;
-using Project.Scripts.AI;
-using Project.Scripts.Buildings;
-using Project.Scripts.Camera;
-using Project.Scripts.Player;
-using Project.Scripts.Quests;
+using Project.AI;
+using Project.Buildings;
+using Project.Camera;
+using Project.MotherbaseLogic;
+using Project.PlayerLogic;
+using Project.Quests;
+using Project.Quests.QuestsConditions;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts
+namespace Project
 {
     public class MainInstaller : MonoInstaller
     {
         [SerializeField] private CameraContainer _cameraContainer;
-        [SerializeField] private Config _config;
-        [SerializeField] private Player.Player _player;
+        [SerializeField] private Player _player;
         [SerializeField] private Planet _planet;
         [SerializeField] private Transform _playerSpawnPoint;
         [SerializeField] private CreaturesInfo _creaturesInfo;
@@ -21,8 +22,8 @@ namespace Project.Scripts
         [SerializeField] private GameObject _hostileCreaturePrefab;
         [SerializeField] private GameObject _calmCreaturePrefab;
 
-        [SerializeField] private GameObject _motherBasePrefab;  
-        
+        [SerializeField] private GameObject _motherBasePrefab;
+
         [SerializeField] private HostileCreaturesService _hostileCreaturesService; //
 
         [SerializeField] private RestrictionalCircle[] _restrictionalCircles;
@@ -32,23 +33,36 @@ namespace Project.Scripts
         [SerializeField] private ReachDestinationGoalsConditionComposer _reachDestinationGoalsConditionComposer;
 
         [SerializeField] private Transform _calmCreaturesParent;
-        [SerializeField] private Transform _hostileCreaturesParent; 
-        
+        [SerializeField] private Transform _hostileCreaturesParent;
+        [SerializeField] private AntiAirDefenseMissile _missile;
+
         public override void InstallBindings()
         {
             BindQuests();
 
-            
+            Container.BindInterfacesAndSelfTo<BuildingsInitializeService>().AsSingle();
+
+            Container.Bind<AntiAirDefenseMissile>().FromInstance(_missile).AsSingle();
+
+            var antiAirDefense = FindObjectOfType<AntiAirDefense>();
+            Container.Bind<AntiAirDefense>().FromInstance(antiAirDefense).AsSingle();
+
+            //Container.BindFactory<int, IState, AntiAirDefenseFactory>().FromFactory<AntiAirDefenseFactory2>();
+
+            Container.BindInterfacesAndSelfTo<BuildingResourcesController>().AsSingle().NonLazy();
+
+            Container.Bind<AADStatesFactory>().AsSingle();
+
             Container.Bind<BuildingScavengeService>().AsSingle();
-            
+
             Container.BindFactory<MotherBaseSpawnContext, MotherBase, MotherBaseFactory>()
                 .FromComponentInNewPrefab(_motherBasePrefab).AsSingle();
-            
+
             Container.BindInterfacesAndSelfTo<HostileCreaturesCollisionsHandler>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerHealthService>().AsSingle();
-            
+
             Container.Bind<CreaturesInfo>().FromInstance(_creaturesInfo).AsSingle();
-            
+
             Container.BindInterfacesAndSelfTo<PlayerHeightCheckService>().AsSingle().NonLazy();
             Container.Bind<PlayerHeightLevelDispatcher>().AsSingle().NonLazy();
             Container.Bind<RestrictionalCircle[]>().FromInstance(_restrictionalCircles).AsSingle();
@@ -57,18 +71,23 @@ namespace Project.Scripts
             Container.BindInterfacesAndSelfTo<PlayerReactionOnHeightLevelChangeService>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<CameraHeightLevelSwitchService>().AsSingle().NonLazy();
-            
-            Container.BindInterfacesAndSelfTo<HostileCreaturesService>().FromInstance(_hostileCreaturesService).AsSingle();
+
+            Container.BindInterfacesAndSelfTo<HostileCreaturesService>().FromInstance(_hostileCreaturesService)
+                .AsSingle();
             Container.Bind<Planet>().FromInstance(_planet).AsSingle();
             Container.Bind<CoordinatesService>().AsSingle().NonLazy();
-            Container.Bind<Config>().FromInstance(_config).AsSingle();
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CameraController>().AsSingle().NonLazy();
             Container.Bind<CameraContainer>().FromInstance(_cameraContainer).AsSingle();
 
-            var scavengeTriggers = FindObjectsOfType<Building>().Select(x => x.ScavengeTrigger).ToArray();
+            var buildings = FindObjectsOfType<Building>();
 
-            Container.BindInterfacesAndSelfTo<BuildingsScavengingHandler>().AsSingle().WithArguments(scavengeTriggers).NonLazy();
+            Container.Bind<Building[]>().FromInstance(buildings).AsSingle();
+
+            var scavengeTriggers = buildings.Select(x => x.ScavengeTrigger).ToArray();
+
+            Container.BindInterfacesAndSelfTo<BuildingsScavengingHandler>().AsSingle().WithArguments(scavengeTriggers)
+                .NonLazy();
 
             Container.Bind<PlayerWallet>().AsSingle().NonLazy();
             Container.Bind<PlayerContainer>().AsSingle().NonLazy();
@@ -76,7 +95,7 @@ namespace Project.Scripts
             Container.Bind<HeightRestrictService>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<MovableEntitiesWatcher>().AsSingle().NonLazy();
-            
+
             Container.BindFactory<CalmCreatureSpawnContext, CalmCreature, CalmCreatureFactory>()
                 .FromSubContainerResolve()
                 .ByNewContextPrefab<CalmCreatureInstaller>(_calmCreaturePrefab)
@@ -88,8 +107,8 @@ namespace Project.Scripts
                 .ByNewContextPrefab<HostileCreatureInstaller>(_hostileCreaturePrefab)
                 .UnderTransform(_hostileCreaturesParent)
                 .AsSingle();
-            
-            Container.Bind<Player.Player>()
+
+            Container.Bind<Player>()
                 .FromSubContainerResolve()
                 .ByNewContextPrefab(_player)
                 .UnderTransform(_playerSpawnPoint)
@@ -108,19 +127,14 @@ namespace Project.Scripts
 
             Container.Bind<QuestGoalsConditionResolver>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<ReachDestinationGoalsConditionComposer>().FromInstance(_reachDestinationGoalsConditionComposer).AsSingle();
+            Container.BindInterfacesAndSelfTo<ReachDestinationGoalsConditionComposer>()
+                .FromInstance(_reachDestinationGoalsConditionComposer).AsSingle();
             Container.BindInterfacesAndSelfTo<ScavengeResourcesConditionComposer>().AsSingle();
         }
-        
     }
 
     public class MotherBaseInstaller : Installer
     {
-        public override void InstallBindings()
-        {
-            
-        }
+        public override void InstallBindings() { }
     }
-
-    
 }

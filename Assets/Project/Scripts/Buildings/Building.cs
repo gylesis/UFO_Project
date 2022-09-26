@@ -1,35 +1,25 @@
-﻿using System;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class Building : MonoBehaviour
     {
         [SerializeField] private BuildingView _buildingView;
         [SerializeField] private Transform _maxHeightPoint;
         [SerializeField] private BuildingScavengeTrigger _scavengeTrigger;
-        [SerializeField] private BuildingResourceType _buildingResourceType;
-        
-        private CoordinatesService _coordinatesService;
+        [SerializeField] private BuildingResourceType _resourceType;
+
         public BuildingData Data { get; private set; }
         public BuildingScavengeTrigger ScavengeTrigger => _scavengeTrigger;
         public Transform MaxHeightPoint => _maxHeightPoint;
-        
-        [Inject]
-        private void Init(CoordinatesService coordinatesService)
-        {
-            _coordinatesService = coordinatesService;
-            
-            float height = GetHeightOfBuilding();
-            
-            var buildingResourcesData = new BuildingResourcesData();
-            buildingResourcesData.Resource = 2000;
-            buildingResourcesData.ResourceType = _buildingResourceType;
+        public BuildingView BuildingView => _buildingView;
+        public BuildingResourceType ResourceType => _resourceType;
 
+        public void UpdateColor()
+        {
             Color color = Color.blue;
 
-            switch (_buildingResourceType)
+            switch (_resourceType)
             {
                 case BuildingResourceType.Blue:
                     color = Color.blue;
@@ -43,15 +33,20 @@ namespace Project.Scripts.Buildings
             }
 
             _buildingView.SetSpriteColor(color);
-            
-            Data = new BuildingData(height, buildingResourcesData);
         }
-       
-        private float GetHeightOfBuilding()
-        {
-            var radius = _coordinatesService.GetRadius(_maxHeightPoint.position);
 
-            return radius;
+        public void Setup(BuildingData buildingData)
+        {
+            Data = buildingData;
+        }
+
+        public void UploadResourcesData(int currentResources)
+        {
+            Data.BuildingResourcesData.Resource = currentResources;
+
+            Debug.Log($"Left resources {currentResources}", gameObject);
+
+            _buildingView.Bar.UpdateValue((float) currentResources / Data.BuildingResourcesData.MaxResources);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Project.Scripts.Buildings;
+﻿using System.Collections.Generic;
+using Project.Buildings;
+using Project.Quests.Goals;
 using Zenject;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.QuestsConditions
 {
     public class ScavengeResourcesConditionComposer : IInitializable, IQuestGoalConditionComposer
     {

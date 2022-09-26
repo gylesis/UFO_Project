@@ -1,8 +1,8 @@
-﻿using Project.Scripts.AI;
+﻿using Project.AI;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts
+namespace Project
 {
     public class CoordinatesService
     {
@@ -51,17 +51,17 @@ namespace Project.Scripts
             var radius = polarVector.Radius; // = distance to target
 
             var angle = polarVector.Angle;
-            
+
             angle *= Mathf.Deg2Rad;
 
             Vector2 position;
-            
+
             position.x = radius * Mathf.Cos(angle);
             position.y = radius * Mathf.Sin(angle);
 
             return position;
         }
-        
+
         public Vector2 GetPolarCoords(Vector3 position, float angle)
         {
             var distanceToTarget = GetRadius(position);
@@ -97,7 +97,7 @@ namespace Project.Scripts
             return Vector2.SignedAngle(_center.right, directionToTarget) * Mathf.Deg2Rad;
         }
 
-        public float GetAngleDeg(Vector2 targetPos) => 
+        public float GetAngleDeg(Vector2 targetPos) =>
             GetAngle(targetPos) * Mathf.Rad2Deg;
 
         public Vector2 GetRadiusVector(Vector3 position) =>

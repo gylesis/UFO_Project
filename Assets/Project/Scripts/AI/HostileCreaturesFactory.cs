@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class HostileCreaturesFactory : PlaceholderFactory<HostileCreatureSpawnContext, HostileCreature> { }
 }

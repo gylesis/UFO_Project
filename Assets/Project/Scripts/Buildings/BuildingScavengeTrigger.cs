@@ -1,10 +1,10 @@
 ﻿using System;
-using Project.Scripts.Player;
+using Project.PlayerLogic;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingScavengeTrigger : MonoBehaviour
     {
@@ -35,22 +35,19 @@ namespace Project.Scripts.Buildings
         {
             _triggerCollider2D.enabled = false;
         }
-        
+
         public void Disable(TimeSpan time)
         {
             _disableDisposable?.Dispose();
-            
-            _disableDisposable = Observable.Timer(time).Subscribe((_ =>
-            {
-                _triggerCollider2D.enabled = false;
-            }));
+
+            _disableDisposable = Observable.Timer(time).Subscribe((_ => { _triggerCollider2D.enabled = false; }));
         }
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             var isPlayer = other.TryGetComponent<PlayerController>(out var playerController);
 
-            if (isPlayer) 
+            if (isPlayer)
                 ScavengeStart.OnNext(_building);
         }
 
@@ -58,7 +55,7 @@ namespace Project.Scripts.Buildings
         {
             var isPlayer = other.TryGetComponent<PlayerController>(out var playerController);
 
-            if (isPlayer) 
+            if (isPlayer)
                 Exit.OnNext(_building);
         }
     }

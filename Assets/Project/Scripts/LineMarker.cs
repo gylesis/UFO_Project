@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Project.Scripts
+namespace Project
 {
     public class LineMarker : MonoBehaviour
     {

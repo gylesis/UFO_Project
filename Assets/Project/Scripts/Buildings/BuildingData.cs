@@ -1,9 +1,10 @@
-﻿namespace Project.Scripts.Buildings
+﻿namespace Project.Buildings
 {
-    public class BuildingData
+    public struct BuildingData
     {
         public float Height { get; }
         public BuildingResourcesData BuildingResourcesData { get; }
+
         public BuildingData(float height, BuildingResourcesData buildingResourcesData)
         {
             Height = height;

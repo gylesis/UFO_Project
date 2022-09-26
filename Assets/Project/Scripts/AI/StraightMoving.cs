@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
-    public class StraightMoving :  IMovingPattern
+    public class StraightMoving : IMovingPattern
     {
         public float CurrentAngle { get; set; }
         public MovingEntityInfo Info { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.Quests
+﻿namespace Project.Quests.QuestsConditions
 {
     public abstract class QuestConditionProcessor
     {

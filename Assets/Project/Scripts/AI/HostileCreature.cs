@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class HostileCreature : MonoBehaviour, IMovableEntity, IHostile
     {
@@ -25,11 +25,11 @@ namespace Project.Scripts.AI
         public void ChangeMovingPattern(IMovingPattern movingPattern)
         {
             _movingPattern = movingPattern;
-            
+
             var movingPatternInfo = new MovingEntityInfo();
             movingPatternInfo.PolarVector = _movingPattern.Info.PolarVector;
             movingPatternInfo.Speed = movingPattern.Info.Speed;
-            
+
             _movingPattern.Info = movingPatternInfo;
         }
 

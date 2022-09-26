@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Project.MotherbaseLogic;
+using Project.Quests.Goals;
 using UnityEngine;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.QuestsConditions
 {
     public class ReachDestinationGoalsConditionComposer : MonoBehaviour, IQuestGoalConditionComposer
     {
-        [SerializeField] private List<ReachGoalConditionPair> _pairs;
+        [NonReorderable] [SerializeField] private List<ReachGoalConditionPair> _pairs;
 
         public Dictionary<QuestGoal, QuestConditionProcessor> Processors => _processors;
 
@@ -33,7 +34,6 @@ namespace Project.Scripts.Quests
                 _processors.Add(goal, condition);
             }
         }
-
     }
 
     [Serializable]

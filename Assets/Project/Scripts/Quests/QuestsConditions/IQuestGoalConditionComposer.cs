@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Project.Quests.Goals;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.QuestsConditions
 {
     public interface IQuestGoalConditionComposer
     {

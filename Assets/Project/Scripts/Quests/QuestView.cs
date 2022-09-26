@@ -2,14 +2,15 @@
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
-using Project.Scripts.Player;
+using Project.PlayerLogic;
+using Project.Quests.Goals;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using Warlords.Utils;
 using Zenject;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests
 {
     public class QuestView : MonoBehaviour
     {

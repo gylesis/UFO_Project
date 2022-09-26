@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class CalmCreature : MonoBehaviour, IMovableEntity
     {
@@ -30,7 +30,7 @@ namespace Project.Scripts.AI
             var movingPatternInfo = new MovingEntityInfo();
             movingPatternInfo.PolarVector = _movingPattern.Info.PolarVector;
             movingPatternInfo.Speed = pattern.Info.Speed;
-            
+
             _movingPattern.Info = movingPatternInfo;
         }
 
@@ -39,6 +39,5 @@ namespace Project.Scripts.AI
             _movingPattern.Move(transform, _coordinatesService);
             transform.up = _coordinatesService.GetRadiusVector(transform.position);
         }
-
     }
 }

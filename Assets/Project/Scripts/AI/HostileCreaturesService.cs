@@ -3,7 +3,7 @@ using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class HostileCreaturesService : MonoBehaviour, IInitializable
     {
@@ -33,7 +33,7 @@ namespace Project.Scripts.AI
 
         public void Initialize()
         {
-            CreateJunk();   
+            CreateJunk();
 
             // CreateBolts();
         }
@@ -69,7 +69,7 @@ namespace Project.Scripts.AI
 
                 movingPatternInfo.PolarVector = polarVector;
                 movingPatternInfo.Speed = speed;
-                
+
                 movingPattern.Info = movingPatternInfo;
                 movingPattern.CurrentAngle = angle;
 
@@ -102,7 +102,7 @@ namespace Project.Scripts.AI
                 var hostileCreatureSpawnContext = new HostileCreatureSpawnContext();
 
                 hostileCreatureSpawnContext.Info = creatureInfo;
-                
+
                 var angle = Random.Range(0, 360f);
                 var speed = Random.Range(0.02f, 0.03f);
                 int radius = Random.Range(secondLevelRadius, thirdLevelRadius - radiusOfLvlTwoAndThree / 2);

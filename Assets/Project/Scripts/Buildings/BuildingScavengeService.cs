@@ -1,48 +1,36 @@
-﻿using Project.Scripts.Player;
-using UniRx;
+﻿using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingScavengeService
     {
-        private readonly PlayerWallet _playerWallet;
         public Subject<BuildingScavengeEventContext> ResourcesScavenged { get; } =
             new Subject<BuildingScavengeEventContext>();
-        
-        public BuildingScavengeService(PlayerWallet playerWallet)
-        {
-            _playerWallet = playerWallet;
-        }
+
 
         public bool AbleToScavenge(Building building)
         {
             return building.Data.BuildingResourcesData.Resource > 0;
         }
-        
+
         public void Scavenge(Building building)
         {
             int amountToScavenge = (int) building.Data.Height * 10;
-            BuildingResourceType buildingResourceType = building.Data.BuildingResourcesData.ResourceType;
-
-            building.Data.BuildingResourcesData.Resource -= amountToScavenge;
-
-            building.Data.BuildingResourcesData.Resource =
-                Mathf.Clamp(building.Data.BuildingResourcesData.Resource, 0, int.MaxValue);
+            BuildingResourceType resourceType = building.Data.BuildingResourcesData.ResourceType;
 
             var scavengeEventContext = new BuildingScavengeEventContext();
 
             scavengeEventContext.Building = building;
             scavengeEventContext.ResourcesTaken = amountToScavenge;
-            scavengeEventContext.ResourceType = buildingResourceType;
+            scavengeEventContext.ResourceType = resourceType;
 
-            Debug.Log($"Scavenged {amountToScavenge} from {building}, type - {buildingResourceType}");
-            
+            Debug.Log($"Scavenged {amountToScavenge} from {building}, type - {resourceType}");
+
             ResourcesScavenged.OnNext(scavengeEventContext);
-            
-            _playerWallet.AddTenge(amountToScavenge);
         }
     }
+
 
     public struct BuildingScavengeEventContext
     {
@@ -50,5 +38,4 @@ namespace Project.Scripts.Buildings
         public int ResourcesTaken;
         public BuildingResourceType ResourceType;
     }
-    
 }

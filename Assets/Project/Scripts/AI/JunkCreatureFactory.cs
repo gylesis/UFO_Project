@@ -1,8 +1,8 @@
 ﻿using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
-    public class JunkCreatureFactory : IFactory<CreatureInfo,Creature>
+    public class JunkCreatureFactory : IFactory<CreatureInfo, Creature>
     {
         private readonly DiContainer _container;
 
@@ -10,7 +10,7 @@ namespace Project.Scripts.AI
         {
             _container = container;
         }
-        
+
         public Creature Create(CreatureInfo info)
         {
             var creature = _container.InstantiatePrefabForComponent<Creature>(info.Prefab);

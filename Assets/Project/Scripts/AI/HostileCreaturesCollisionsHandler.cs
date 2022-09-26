@@ -1,7 +1,8 @@
 ﻿using System;
+using Project.PlayerLogic;
 using UniRx;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class HostileCreaturesCollisionsHandler : IDisposable
     {
@@ -31,6 +32,4 @@ namespace Project.Scripts.AI
             _compositeDisposable.Dispose();
         }
     }
-
-
 }

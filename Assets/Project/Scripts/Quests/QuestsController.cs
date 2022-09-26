@@ -1,8 +1,10 @@
 ﻿using System;
+using Project.Quests.Goals;
+using Project.Quests.QuestsConditions;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests
 {
     public class QuestsController : ITickable, IDisposable
     {
@@ -13,7 +15,8 @@ namespace Project.Scripts.Quests
         private Quest _currentQuest;
         private QuestGoal _currentGoal;
 
-        public QuestsController(QuestsContainer questsContainer, QuestView questView, QuestGoalsConditionResolver questGoalsConditionResolver)
+        public QuestsController(QuestsContainer questsContainer, QuestView questView,
+            QuestGoalsConditionResolver questGoalsConditionResolver)
         {
             _questGoalsConditionResolver = questGoalsConditionResolver;
             _questView = questView;

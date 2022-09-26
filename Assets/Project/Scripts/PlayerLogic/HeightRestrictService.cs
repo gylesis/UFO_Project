@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.Player
+﻿namespace Project.PlayerLogic
 {
     public class HeightRestrictService
     {
@@ -9,6 +9,7 @@
         {
             MaxHeight = value;
         }
+
         public void SetMinHeight(float value)
         {
             MinHeight = value;

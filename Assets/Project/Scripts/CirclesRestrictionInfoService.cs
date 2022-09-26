@@ -3,7 +3,7 @@ using System.Linq;
 using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts
+namespace Project
 {
     public class CirclesRestrictionInfoService : IDisposable
     {
@@ -43,7 +43,7 @@ namespace Project.Scripts
             RestrictionalCircle circle = _restrictionalCircles.FirstOrDefault(x => x.HeightLevel == nextIndex);
 
             float radius;
-            
+
             if (circle == null)
             {
                 radius = 50; // default value if there is any mistake

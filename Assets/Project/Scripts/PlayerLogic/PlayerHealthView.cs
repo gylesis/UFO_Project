@@ -1,16 +1,15 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using TMPro;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.PlayerLogic
 {
     public class PlayerHealthView : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _healthText;  
-        
+        [SerializeField] private TMP_Text _healthText;
+
         private CompositeDisposable _compositeDisposable = new CompositeDisposable();
         private PlayerHealthService _playerHealthService;
 
@@ -28,7 +27,7 @@ namespace Project.Scripts.AI
             await _healthText.DOColor(Color.red, 0.5f).AsyncWaitForCompletion();
 
             _healthText.text = health.ToString();
-            
+
             _healthText.DOColor(initColor, 0.5f);
         }
 

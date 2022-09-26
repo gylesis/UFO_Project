@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerInstaller : MonoInstaller
     {
-        [SerializeField] private PlayerClaw _playerClaw;    
+        [SerializeField] private PlayerClaw _playerClaw;
+
         public override void InstallBindings()
         {
             Container.Bind<PlayerClawController>().AsSingle();

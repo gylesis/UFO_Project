@@ -1,13 +1,13 @@
 ﻿using UniRx;
 using UnityEngine;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests
 {
     [RequireComponent(typeof(Collider2D))]
     public class QuestTrigger : MonoBehaviour
     {
         public Subject<Unit> Triggered { get; } = new Subject<Unit>();
-        
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
@@ -15,6 +15,5 @@ namespace Project.Scripts.Quests
                 Triggered.OnNext(Unit.Default);
             }
         }
-
     }
-}   
+}

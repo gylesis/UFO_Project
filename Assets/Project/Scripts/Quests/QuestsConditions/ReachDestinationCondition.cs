@@ -1,7 +1,8 @@
 ﻿using System;
+using Project.Quests.Goals;
 using UniRx;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.QuestsConditions
 {
     public class ReachDestinationCondition : QuestConditionProcessor
     {
@@ -29,7 +30,7 @@ namespace Project.Scripts.Quests
                 _questTrigger.enabled = false;
                 _questTrigger.gameObject.SetActive(false);
             }
-            
+
             _disposable?.Dispose();
         }
     }

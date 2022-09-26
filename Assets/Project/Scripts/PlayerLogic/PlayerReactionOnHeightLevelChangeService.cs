@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class PlayerReactionOnHeightLevelChangeService : IPlayerHeightLevelChangeListener
     {
@@ -13,7 +13,7 @@ namespace Project.Scripts.Player
             _config = config;
             _playerContainer = playerContainer;
         }
-        
+
         public void OnHeightLevelSwitch(SwitchHeightLevelContext switchHeightLevelContext)
         {
             ScalePlayerView(switchHeightLevelContext);
@@ -21,7 +21,7 @@ namespace Project.Scripts.Player
             int level = switchHeightLevelContext.Level;
 
             float size = _config._heightLevelTransitionInfo[level - 1].PlayerHeightLevelInfo.Size;
-            
+
             _playerContainer.Player.PlayerController.SetXSpeed(size);
             _playerContainer.Player.PlayerController.SetYSpeed(size);
         }

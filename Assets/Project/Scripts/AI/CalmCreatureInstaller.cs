@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class CalmCreatureInstaller : MonoInstaller
     {
@@ -11,11 +11,12 @@ namespace Project.Scripts.AI
         {
             _calmCreatureSpawnContext = calmCreatureSpawnContext;
         }
-        
+
         public override void InstallBindings()
         {
             Container.Bind<CalmCreatureSpawnContext>().FromInstance(_calmCreatureSpawnContext).AsSingle();
-            Container.Bind<CreaturesPlacer>().AsSingle().WithArguments(transform, _calmCreatureSpawnContext.Pos).NonLazy();
+            Container.Bind<CreaturesPlacer>().AsSingle().WithArguments(transform, _calmCreatureSpawnContext.Pos)
+                .NonLazy();
             Container.Bind<CalmCreature>().FromComponentOnRoot().AsSingle();
         }
     }

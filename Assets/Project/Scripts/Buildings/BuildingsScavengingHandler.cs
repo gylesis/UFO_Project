@@ -1,17 +1,18 @@
 ﻿using System;
 using UniRx;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingsScavengingHandler : IDisposable
     {
         private readonly BuildingsScavengingController _buildingsScavengingController;
         private readonly CompositeDisposable _compositeDisposable = new CompositeDisposable();
 
-        public BuildingsScavengingHandler(BuildingScavengeTrigger[] scavengeTriggers, BuildingsScavengingController buildingsScavengingController)
+        public BuildingsScavengingHandler(BuildingScavengeTrigger[] scavengeTriggers,
+            BuildingsScavengingController buildingsScavengingController)
         {
             _buildingsScavengingController = buildingsScavengingController;
-            
+
             foreach (BuildingScavengeTrigger buildingScavengeTrigger in scavengeTriggers)
             {
                 buildingScavengeTrigger.ScavengeStart.Subscribe(OnBuildingScavenge).AddTo(_compositeDisposable);
@@ -19,13 +20,13 @@ namespace Project.Scripts.Buildings
             }
         }
 
-        private void OnTriggerExit(Building building) => 
+        private void OnTriggerExit(Building building) =>
             _buildingsScavengingController.StopScavenging();
 
-        private void OnBuildingScavenge(Building building) => 
+        private void OnBuildingScavenge(Building building) =>
             _buildingsScavengingController.StartPollingToScavenge(building);
 
-        public void Dispose() => 
+        public void Dispose() =>
             _compositeDisposable.Dispose();
     }
 }

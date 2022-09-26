@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Scripts.AI
+namespace Project.AI
 {
     public class BackwardMoving : IMovingPattern
     {
@@ -22,7 +22,7 @@ namespace Project.Scripts.AI
         }
     }
 
-    public class MovingPatterBase 
+    public class MovingPatterBase
     {
         protected CoordinatesService CoordinatesService;
 
@@ -30,6 +30,5 @@ namespace Project.Scripts.AI
         {
             CoordinatesService = coordinatesService;
         }
-        
     }
 }

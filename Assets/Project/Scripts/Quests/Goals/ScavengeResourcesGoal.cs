@@ -1,7 +1,7 @@
-﻿using Project.Scripts.Buildings;
+﻿using Project.Buildings;
 using UnityEngine;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests.Goals
 {
     [CreateAssetMenu(menuName = "Quests/New ScavengeResources goal", fileName = "ScavengeResourcesGoal", order = 0)]
     public class ScavengeResourcesGoal : QuestGoal

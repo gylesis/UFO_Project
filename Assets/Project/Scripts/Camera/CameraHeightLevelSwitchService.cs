@@ -1,6 +1,6 @@
-﻿using Project.Scripts.Player;
+﻿using Project.PlayerLogic;
 
-namespace Project.Scripts.Camera
+namespace Project.Camera
 {
     public class CameraHeightLevelSwitchService : IPlayerHeightLevelChangeListener
     {
@@ -10,17 +10,17 @@ namespace Project.Scripts.Camera
         public CameraHeightLevelSwitchService(CameraController cameraController, Config config)
         {
             _cameraController = cameraController;
-            _config = config;   
+            _config = config;
         }
-        
+
         public void OnHeightLevelSwitch(SwitchHeightLevelContext switchHeightLevelContext)
         {
             var level = switchHeightLevelContext.Level;
 
-            CameraHeightLevelInfo cameraHeightLevelInfo = _config._heightLevelTransitionInfo[level - 1].CameraHeightLevelInfo;
+            CameraHeightLevelInfo cameraHeightLevelInfo =
+                _config._heightLevelTransitionInfo[level - 1].CameraHeightLevelInfo;
 
             _cameraController.SwitchHeightLevel(cameraHeightLevelInfo);
         }
-        
     }
 }

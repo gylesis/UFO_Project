@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Project.Quests.Goals;
 using UnityEngine;
 
-namespace Project.Scripts.Quests
+namespace Project.Quests
 {
     [CreateAssetMenu(menuName = "Quests/QuestsContainer", fileName = "QuestsContainer", order = 0)]
     public class QuestsContainer : ScriptableObject
@@ -21,11 +22,11 @@ namespace Project.Scripts.Quests
 
             return null;
         }
-        
+
         public TGoalType[] GetAllGoalsByType<TGoalType>() where TGoalType : QuestGoal
         {
             List<TGoalType> goals = new List<TGoalType>();
-            
+
             foreach (Quest quest in _quests)
             {
                 foreach (QuestGoal goal in quest.Goals)
@@ -39,16 +40,15 @@ namespace Project.Scripts.Quests
 
             return goals.ToArray();
         }
-        
+
         public Quest GetNextQuest()
         {
             return _quests.FirstOrDefault(x => x.IsFinished == false);
         }
-        
+
         public bool DoExistQuests()
         {
             return _quests.Any(x => x.IsFinished == false);
         }
-        
     }
 }

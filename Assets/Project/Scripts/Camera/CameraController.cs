@@ -1,10 +1,9 @@
 ﻿using DG.Tweening;
-using Project.Scripts.Player;
-using UniRx;
+using Project.PlayerLogic;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Camera
+namespace Project.Camera
 {
     public class CameraController : ITickable
     {
@@ -13,7 +12,7 @@ namespace Project.Scripts.Camera
         private readonly Config _config;
         private readonly PlayerContainer _playerContainer;
         private readonly CoordinatesService _coordinatesService;
-        
+
         private Tweener _sizeTweener;
         private Tweener _posTweener;
 
@@ -36,7 +35,7 @@ namespace Project.Scripts.Camera
 
             // MoveX(_inputService.TouchDelta.normalized.x);
             // MoveY(_inputService.TouchDelta.normalized.y);
-            
+
             Rotate();
         }
 
@@ -53,6 +52,7 @@ namespace Project.Scripts.Camera
             _cameraContainer.CamParent.rotation = Quaternion.Lerp(_cameraContainer.CamParent.rotation,
                 camParentRotation, Time.deltaTime * _config.CameraXSpeedMovement.Value);
         }
+
         public void SwitchHeightLevel(CameraHeightLevelInfo heightLevelInfo)
         {
             var orthographicSize = _camera.orthographicSize;
@@ -67,7 +67,7 @@ namespace Project.Scripts.Camera
             _sizeTweener = DOVirtual.Float(orthographicSize, neededOrthographicSize, 1,
                     (value => _camera.orthographicSize = value))
                 .SetEase(heightLevelInfo.PosTransition);
-            
+
             _posTweener = DOVirtual.Float(positionY, neededYHeight, 1, (value =>
                 {
                     Vector3 transformPosition = _camera.transform.localPosition;

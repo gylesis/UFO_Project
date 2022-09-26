@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Project.Scripts.Player;
+using Project.PlayerLogic;
 using Zenject;
 
-namespace Project.Scripts.Buildings
+namespace Project.Buildings
 {
     public class BuildingsRegistrationService : IInitializable
     {
@@ -13,13 +13,14 @@ namespace Project.Scripts.Buildings
         private CirclesRestrictionInfoService _circlesRestrictionInfoService;
 
         [Inject]
-        private void Init(HeightRestrictService heightRestrictService, CoordinatesService coordinatesService, CirclesRestrictionInfoService circlesRestrictionInfoService)
+        private void Init(HeightRestrictService heightRestrictService, CoordinatesService coordinatesService,
+            CirclesRestrictionInfoService circlesRestrictionInfoService)
         {
             _circlesRestrictionInfoService = circlesRestrictionInfoService;
             _coordinatesService = coordinatesService;
             _heightRestrictService = heightRestrictService;
         }
-        
+
         public void Register(Building building)
         {
             _buildings.Add(building);
@@ -30,10 +31,10 @@ namespace Project.Scripts.Buildings
             var buildingDatas = _buildings.Select(x => x.Data);
 
             var orderedEnumerable = buildingDatas.OrderByDescending(x => x.Height);
-            
+
             var data = orderedEnumerable.First();
 
-            Building building = _buildings.First(x => x.Data == data);
+            Building building = _buildings.First(x => x.Data.Height == data.Height);
 
             var radius = _coordinatesService.GetRadius(building.MaxHeightPoint.position);
 

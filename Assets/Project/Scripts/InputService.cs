@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
-using UnityEngine.XR;
 using Zenject;
 
-namespace Project.Scripts
+namespace Project
 {
     public class InputService : ITickable
     {
@@ -18,21 +17,21 @@ namespace Project.Scripts
         {
             _isMobilePlatform = Application.isMobilePlatform;
         }
-        
+
         public void Tick()
         {
             //MobileInput();
-            
-            if(_isMobilePlatform)
+
+            if (_isMobilePlatform)
                 MobileInput();
             else
                 StandaloneInput();
         }
-        
+
         private void MobileInput()
         {
-            if(IsActive == false) return;
-            
+            if (IsActive == false) return;
+
             float deltaX = 0;
             float deltaY = 0;
 
@@ -81,15 +80,14 @@ namespace Project.Scripts
 
         private void StandaloneInput()
         {
-            if(IsActive == false) return;
-            
+            if (IsActive == false) return;
+
             Vector2 input;
 
             input.y = Input.GetAxis("Vertical") * 5;
             input.x = Input.GetAxis("Horizontal") * 5;
-            
+
             TouchDelta = input;
-            
         }
     }
 }

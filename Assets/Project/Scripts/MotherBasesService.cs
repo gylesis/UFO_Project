@@ -1,8 +1,9 @@
-﻿using Project.Scripts.AI;
+﻿using Project.AI;
+using Project.MotherbaseLogic;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts
+namespace Project
 {
     public class MotherBasesService : MonoBehaviour
     {
@@ -11,7 +12,8 @@ namespace Project.Scripts
         private MovableEntitiesWatcher _movableEntitiesWatcher;
 
         [Inject]
-        private void Init(MotherBaseFactory motherBaseFactory, CirclesRestrictionInfoService circlesRestrictionInfoService, MovableEntitiesWatcher movableEntitiesWatcher)
+        private void Init(MotherBaseFactory motherBaseFactory,
+            CirclesRestrictionInfoService circlesRestrictionInfoService, MovableEntitiesWatcher movableEntitiesWatcher)
         {
             _movableEntitiesWatcher = movableEntitiesWatcher;
             _circlesRestrictionInfoService = circlesRestrictionInfoService;
@@ -27,25 +29,24 @@ namespace Project.Scripts
             float angle = 90;
             float radius = Constants.MotherBaseRadius;
             var polarVector = new PolarVector(radius, angle);
-            
+
             motherBaseSpawnContext.Pos = polarVector;
 
             IMovingPattern movingPattern = new StraightMoving();
-            
+
             var movingPatternInfo = new MovingEntityInfo();
-            
+
             movingPatternInfo.Speed = 0.02f;
             movingPatternInfo.PolarVector = polarVector;
-            
+
             movingPattern.CurrentAngle = angle;
             movingPattern.Info = movingPatternInfo;
-            
+
             motherBaseSpawnContext.MovingPattern = movingPattern;
-            
-            var motherBase = _motherBaseFactory.Create(motherBaseSpawnContext);  
-            
+
+            var motherBase = _motherBaseFactory.Create(motherBaseSpawnContext);
+
             _movableEntitiesWatcher.Watch(motherBase);
         }
-        
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Project.Scripts.Buildings
+﻿namespace Project.Buildings
 {
     public enum BuildingResourceType
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Project.Scripts.Player
+namespace Project.PlayerLogic
 {
     public class Player : MonoBehaviour
     {
@@ -16,7 +16,7 @@ namespace Project.Scripts.Player
         public PlayerController PlayerController => _playerController;
         public PlayerClawController PlayerClawController => _playerClawController;
         public Transform Transform => _transform;
-        
+
         private InputService _inputService;
         private PlayerClawController _playerClawController;
         private PlayerClaw _playerClaw;
@@ -29,7 +29,4 @@ namespace Project.Scripts.Player
             _inputService = inputService;
         }
     }
-    
-        
-    
 }
