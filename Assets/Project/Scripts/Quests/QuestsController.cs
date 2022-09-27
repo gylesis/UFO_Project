@@ -79,6 +79,8 @@ namespace Project.Quests
 
         public void Tick()
         {
+            return;
+            
             if (Input.touches.Length == 3)
             {
                 StartNextQuest();

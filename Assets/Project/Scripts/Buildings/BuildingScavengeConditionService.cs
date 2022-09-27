@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Project.Camera;
+using Project.CameraLogic;
 using Project.PlayerLogic;
 using UnityEngine;
 

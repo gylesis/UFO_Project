@@ -1,6 +1,6 @@
 ﻿using Project.PlayerLogic;
 
-namespace Project.Camera
+namespace Project.CameraLogic
 {
     public class CameraHeightLevelSwitchService : IPlayerHeightLevelChangeListener
     {

@@ -44,8 +44,6 @@ namespace Project.Buildings
         {
             Data.BuildingResourcesData.Resource = currentResources;
 
-            Debug.Log($"Left resources {currentResources}", gameObject);
-
             _buildingView.Bar.UpdateValue((float) currentResources / Data.BuildingResourcesData.MaxResources);
         }
     }

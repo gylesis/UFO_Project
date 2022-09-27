@@ -3,7 +3,7 @@ using Project.PlayerLogic;
 using UnityEngine;
 using Zenject;
 
-namespace Project.Camera
+namespace Project.CameraLogic
 {
     public class CameraController : ITickable
     {

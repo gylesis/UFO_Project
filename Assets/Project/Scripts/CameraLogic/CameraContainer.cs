@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
-namespace Project.Camera
+namespace Project.CameraLogic
 {
     public class CameraContainer : MonoBehaviour
     {
-        [SerializeField] private UnityEngine.Camera _camera;
+        [SerializeField] private Camera _camera;
         [SerializeField] private Transform _camParent;
 
-        public UnityEngine.Camera Camera => _camera;
+        public Camera Camera => _camera;
         public Transform CamParent => _camParent;
     }
-}
+}   

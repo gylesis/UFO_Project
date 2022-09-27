@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Project.AI;
 using Project.Buildings;
-using Project.Camera;
+using Project.CameraLogic;
 using Project.MotherbaseLogic;
 using Project.PlayerLogic;
 using Project.Quests;

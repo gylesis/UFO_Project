@@ -1,5 +1,6 @@
 ﻿using Project.AI;
 using UnityEngine;
+using UnityEngine.Profiling;
 using Zenject;
 
 namespace Project
@@ -25,11 +26,15 @@ namespace Project
 
         public void SetRadius(Transform transform, float radius)
         {
+            Profiler.BeginSample("Set Radius");
+
             var angle = GetAngle(transform.position);
 
             var polarVector = new PolarVector(radius, angle);
 
             SetPolarCoords(transform, polarVector);
+
+            Profiler.EndSample();
         }
 
         public void SetPolarCoords(Transform transform, PolarVector polarVector)
@@ -64,6 +69,8 @@ namespace Project
 
         public Vector2 GetPolarCoords(Vector3 position, float angle)
         {
+            Profiler.BeginSample("GetPolar");
+
             var distanceToTarget = GetRadius(position);
 
             var radius = distanceToTarget; // = distance to target
@@ -72,6 +79,8 @@ namespace Project
 
             position.x = radius * Mathf.Cos(angle);
             position.y = radius * Mathf.Sin(angle);
+
+            Profiler.EndSample();
 
             return position;
         }

@@ -4,7 +4,6 @@
     {
         IMovingPattern MovingPattern { get; }
         void ChangeMovingPattern(IMovingPattern movingPattern);
-
         void MoveTick();
     }
 }

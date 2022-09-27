@@ -8,7 +8,6 @@ namespace Project.Buildings
         public Subject<BuildingScavengeEventContext> ResourcesScavenged { get; } =
             new Subject<BuildingScavengeEventContext>();
 
-
         public bool AbleToScavenge(Building building)
         {
             return building.Data.BuildingResourcesData.Resource > 0;
@@ -30,7 +29,6 @@ namespace Project.Buildings
             ResourcesScavenged.OnNext(scavengeEventContext);
         }
     }
-
 
     public struct BuildingScavengeEventContext
     {
