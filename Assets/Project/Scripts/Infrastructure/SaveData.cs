@@ -3,21 +3,14 @@
 namespace Project.Infrastructure
 {
     [Serializable]
-    public class SaveData
-    {
-        
-    }
+    public class SaveData { }
 
     [Serializable]
-    public class PlayerUpgradesSaveData
-    {
-
-    }
+    public class PlayerUpgradesSaveData { }
 
     [Serializable]
     public class PlayerUpgradeSaveData
     {
         public byte SomeData;
     }
-    
 }

@@ -21,9 +21,9 @@ namespace Project.PlayerLogic
             int level = switchHeightLevelContext.Level;
 
             PlayerHeightLevelInfo heightLevelInfo = _config.HeightLevelTransitionInfos[level - 1].PlayerHeightLevelInfo;
-            
+
             float speed = heightLevelInfo.Speed;
-    
+
             _playerContainer.Player.PlayerController.SetXSpeed(speed);
             _playerContainer.Player.PlayerController.SetYSpeed(speed);
         }
@@ -47,9 +47,11 @@ namespace Project.PlayerLogic
                 scale *= 1f;
             }
 
-            CameraHeightLevelInfo cameraHeightLevelInfo = _config.HeightLevelTransitionInfos[level - 1].CameraHeightLevelInfo;
-            
-            _playerContainer.Player.PlayerView.transform.DOScale(scale, 0.5f).SetEase(cameraHeightLevelInfo.PosTransition);
+            CameraHeightLevelInfo cameraHeightLevelInfo =
+                _config.HeightLevelTransitionInfos[level - 1].CameraHeightLevelInfo;
+
+            _playerContainer.Player.PlayerView.transform.DOScale(scale, 0.5f)
+                .SetEase(cameraHeightLevelInfo.PosTransition);
         }
     }
 }

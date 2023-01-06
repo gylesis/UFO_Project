@@ -39,8 +39,8 @@ namespace Project.AI
         {
             CreatureInfo creatureInfo = _creaturesInfo.GetCloudInfo();
 
-            var secondLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(2);
-            var firstLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(1);
+            var secondLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(2);
+            var firstLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(1);
 
             var radiusOfLvlFirstAndTwo = secondLevelRadius - firstLevelRadius;
 

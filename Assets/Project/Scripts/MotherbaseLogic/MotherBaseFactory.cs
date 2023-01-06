@@ -1,7 +1,6 @@
-﻿using Project.MotherbaseLogic;
-using Zenject;
+﻿using Zenject;
 
-namespace Project
+namespace Project.MotherbaseLogic
 {
     public class MotherBaseFactory : PlaceholderFactory<MotherBaseSpawnContext, MotherBase>
     {

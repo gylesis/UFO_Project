@@ -1,6 +1,6 @@
 ﻿using Warlords.Utils;
 
-namespace Project.PlayerLogic
+namespace Project.PlayerLogic.Upgrades
 {
     public class UpgradeButton : ReactiveButton<UpgradeType>
     {
@@ -11,6 +11,5 @@ namespace Project.PlayerLogic
         {
             _upgradeType = upgradeType;
         }
-        
     }
 }

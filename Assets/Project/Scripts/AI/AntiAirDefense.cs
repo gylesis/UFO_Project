@@ -1,4 +1,5 @@
 ﻿using System;
+using Project.Infrastructure;
 using Project.PlayerLogic;
 using UnityEngine;
 using Zenject;
@@ -75,19 +76,19 @@ namespace Project.AI
             var leftPos = transform.position + new Vector3(xLeftPos, yLeftPos, 0);
 
             Quaternion quaternion = Quaternion.Euler(leftPos);
-            
+
             var test = new Vector3();
 
             test.x = transform.position.x + Mathf.Sin(_angleDetection * Mathf.Deg2Rad);
             test.y = transform.position.x + Mathf.Cos(_angleDetection * Mathf.Deg2Rad);
-            
+
             Gizmos.DrawLine(transform.position, test);
 
             float xRightPos = _detectDistance * Mathf.Sin(_angleDetection * Mathf.Deg2Rad);
             float yRightPos = _detectDistance * Mathf.Cos(_angleDetection * Mathf.Deg2Rad);
-            
-            var rightPos = transform.position + new Vector3(xRightPos, yRightPos, 0); 
-    
+
+            var rightPos = transform.position + new Vector3(xRightPos, yRightPos, 0);
+
             Gizmos.DrawLine(transform.position, leftPos);
             Gizmos.DrawLine(transform.position, rightPos);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Project.PlayerLogic;
 using UniRx;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Project
         [SerializeField] private HeightLevelTransitionInfo[] _heightLevelTransitionInfo;
 
         public HeightLevelTransitionInfo[] HeightLevelTransitionInfos => _heightLevelTransitionInfo;
-        
+
         private void OnValidate()
         {
             for (var index = 0; index < _heightLevelTransitionInfo.Length; index++)
@@ -30,7 +31,7 @@ namespace Project
             }
         }
     }
-    
+
     [Serializable]
     public class BuildingResourcesData
     {

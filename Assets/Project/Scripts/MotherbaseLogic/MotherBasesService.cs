@@ -1,9 +1,8 @@
 ﻿using Project.AI;
-using Project.MotherbaseLogic;
 using UnityEngine;
 using Zenject;
 
-namespace Project
+namespace Project.MotherbaseLogic
 {
     public class MotherBasesService : MonoBehaviour
     {

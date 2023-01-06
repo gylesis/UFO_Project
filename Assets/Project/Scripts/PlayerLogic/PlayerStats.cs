@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Project
+namespace Project.PlayerLogic
 {
     [Serializable]
     public struct PlayerStats

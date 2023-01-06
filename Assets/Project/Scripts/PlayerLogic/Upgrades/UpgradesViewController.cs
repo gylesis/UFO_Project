@@ -7,7 +7,7 @@ using Warlords.Utils;
 using Zenject;
 using Object = UnityEngine.Object;
 
-namespace Project.PlayerLogic
+namespace Project.PlayerLogic.Upgrades
 {
     public class UpgradesViewController : IInitializable, ITickable, IDisposable
     {
@@ -44,20 +44,20 @@ namespace Project.PlayerLogic
                 Debug.LogError($"This type of upgrade exists already");
                 return;
             }
-            
+
             UpgradeView upgradeView = Object.Instantiate(_upgradeViewPrefab, _parent);
 
             _upgradeViews.Add(upgradeType, upgradeView);
-            
+
             upgradeView.UpgradeButton.Clicked.Subscribe((OnUpgradeButtonClicked)).AddTo(_compositeDisposable);
-            
-            upgradeView.Init(context);    
+
+            upgradeView.Init(context);
         }
-        
+
         private void OnUpgradeButtonClicked(EventContext<UpgradeType> context)
         {
             UpgradeType upgradeType = context.Value;
-            
+
             UpgradeEvent.OnNext(upgradeType);
         }
 
@@ -67,7 +67,7 @@ namespace Project.PlayerLogic
             UpgradeView upgradeView = _upgradeViews[upgradeType];
             upgradeView.UpdateView(context);
         }
-        
+
         public void ShowMenu()
         {
             _canvasGroup.interactable = true;
@@ -111,5 +111,4 @@ namespace Project.PlayerLogic
         public int NewPrice;
         public ushort NewLevel;
     }
-    
 }

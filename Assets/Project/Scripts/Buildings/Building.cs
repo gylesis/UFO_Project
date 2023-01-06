@@ -44,7 +44,7 @@ namespace Project.Buildings
         {
             Data.BuildingResourcesData.Resource = currentResources;
 
-            _buildingView.Bar.UpdateValue((float) currentResources / Data.BuildingResourcesData.MaxResources);
+            _buildingView.Bar.UpdateValue((float)currentResources / Data.BuildingResourcesData.MaxResources);
         }
     }
 }

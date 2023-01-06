@@ -25,7 +25,7 @@ namespace Project.PlayerLogic
         public bool IsStickingLocked { get; set; }
 
         private float _speedMultiplier = 1;
-        
+
         [Inject]
         private void Init(HeightRestrictService heightRestrictService,
             InputService inputService)
@@ -51,7 +51,7 @@ namespace Project.PlayerLogic
 
             radiusVector.Normalize();
 
-            transform.up = Vector3.Lerp(transform.up, (Vector3) radiusVector, _lerpRotate);
+            transform.up = Vector3.Lerp(transform.up, (Vector3)radiusVector, _lerpRotate);
         }
 
         public void Move()
@@ -126,10 +126,7 @@ namespace Project.PlayerLogic
             DOVirtual.Float(_speedY, speed, 0.5f, (value => _speedY = value));
         }
 
-        public void SetSpeedMultiplier(float multiplier)
-        {
-                
-        }
+        public void SetSpeedMultiplier(float multiplier) { }
 
         /*private void OnDrawGizmos()
         {

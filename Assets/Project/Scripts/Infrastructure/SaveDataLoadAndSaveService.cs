@@ -1,12 +1,7 @@
-﻿
-namespace Project.Infrastructure
+﻿namespace Project.Infrastructure
 {
     public class SaveDataLoadAndSaveService
     {
-        public SaveDataLoadAndSaveService()
-        {
-           
-        }
-        
+        public SaveDataLoadAndSaveService() { }
     }
 }

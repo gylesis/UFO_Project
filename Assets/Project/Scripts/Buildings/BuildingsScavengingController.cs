@@ -1,5 +1,6 @@
 ﻿using System;
 using Project.PlayerLogic;
+using Project.PlayerLogic.Upgrades;
 using UniRx;
 using UnityEngine;
 using Zenject;

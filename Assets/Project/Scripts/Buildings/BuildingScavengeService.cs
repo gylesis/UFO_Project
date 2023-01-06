@@ -1,4 +1,5 @@
 ﻿using Project.PlayerLogic;
+using Project.PlayerLogic.Upgrades;
 using UniRx;
 using UnityEngine;
 
@@ -23,16 +24,16 @@ namespace Project.Buildings
 
         public void Scavenge(Building building)
         {
-            int amountToScavenge = (int) (building.Data.Height * (10));
+            int amountToScavenge = (int)(building.Data.Height * (10));
             BuildingResourceType resourceType = building.Data.BuildingResourcesData.ResourceType;
 
             var resources = building.Data.BuildingResourcesData.Resource;
-            
+
             if (amountToScavenge >= resources)
             {
                 amountToScavenge = resources;
             }
-            
+
             var scavengeEventContext = new BuildingScavengeEventContext();
 
             scavengeEventContext.Building = building;

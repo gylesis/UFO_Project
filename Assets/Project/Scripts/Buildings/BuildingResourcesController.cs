@@ -47,7 +47,8 @@ namespace Project.Buildings
 
             _restoreResourcesCooldown[building.GetInstanceID()]?.Dispose();
 
-            var disposable = Observable.Timer(TimeSpan.FromSeconds(3)).Concat(Observable.Interval(TimeSpan.FromSeconds(0.5f))).Subscribe((l => RestoreResources(building)));
+            var disposable = Observable.Timer(TimeSpan.FromSeconds(3))
+                .Concat(Observable.Interval(TimeSpan.FromSeconds(0.5f))).Subscribe((l => RestoreResources(building)));
 
             _restoreResourcesCooldown[building.GetInstanceID()] = disposable;
 

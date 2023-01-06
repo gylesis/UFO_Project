@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Buildings
+namespace Project
 {
     public class SpriteBar : MonoBehaviour
     {

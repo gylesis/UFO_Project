@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Project.PlayerLogic
+namespace Project.PlayerLogic.Upgrades
 {
     public class UpgradeView : MonoBehaviour
     {
@@ -36,7 +36,7 @@ namespace Project.PlayerLogic
         }
 
         private void UpdateLevelView(ushort level)
-        {   
+        {
             if (level == 99)
             {
                 _upgradeLevelText.text = "MAX";

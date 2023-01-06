@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Project.AI
+namespace Project.Infrastructure
 {
     public class StateMachine : IDisposable
     {
@@ -32,7 +32,7 @@ namespace Project.AI
         {
             if (state == _current) return;
 
-           // Debug.Log($"Changed state to {state.GetType()}");
+            // Debug.Log($"Changed state to {state.GetType()}");
 
             _current?.Exit();
 

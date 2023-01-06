@@ -12,7 +12,7 @@
         public void OnSwitchHeightLevel(SwitchHeightLevelContext switchHeightLevelContext)
         {
             foreach (IPlayerHeightLevelChangeListener playerHeightLevelChangeListener in
-                _playerHeightLevelChangeListeners)
+                     _playerHeightLevelChangeListeners)
                 playerHeightLevelChangeListener.OnHeightLevelSwitch(switchHeightLevelContext);
         }
     }

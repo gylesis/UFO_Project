@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Project.CameraLogic
 {
@@ -11,4 +10,4 @@ namespace Project.CameraLogic
         public Camera Camera => _camera;
         public Transform CamParent => _camParent;
     }
-}   
+}

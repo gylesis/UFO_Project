@@ -42,8 +42,8 @@ namespace Project.AI
         {
             CreatureInfo creatureInfo = _creaturesInfo.GetJunkInfo();
 
-            var secondLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(2);
-            var thirdLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(3);
+            var secondLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(2);
+            var thirdLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(3);
 
             var radiusOfLvlTwoAndThree = thirdLevelRadius - secondLevelRadius;
 
@@ -92,8 +92,8 @@ namespace Project.AI
         {
             CreatureInfo creatureInfo = _creaturesInfo.GetBoltInfo();
 
-            var secondLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(2);
-            var thirdLevelRadius = (int) _circlesRestrictionInfoService.GetRadius(3);
+            var secondLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(2);
+            var thirdLevelRadius = (int)_circlesRestrictionInfoService.GetRadius(3);
 
             var radiusOfLvlTwoAndThree = thirdLevelRadius - secondLevelRadius;
 

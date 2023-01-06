@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Project.Infrastructure;
+using Zenject;
 
 namespace Project.AI
 {
