@@ -62,7 +62,7 @@ namespace Project.AI
                 {
                     _playerHealthService.ApplyDamage(1);
 
-                    Debug.Log("Bam");
+                    Debug.Log($"Player hit by missile!");
 
                     _collisionDictionary[missile].Dispose();
                     _collisionDictionary.Remove(missile);

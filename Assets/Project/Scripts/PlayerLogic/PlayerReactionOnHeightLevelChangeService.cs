@@ -6,7 +6,7 @@ namespace Project.PlayerLogic
     public class PlayerReactionOnHeightLevelChangeService : IPlayerHeightLevelChangeListener
     {
         private readonly PlayerContainer _playerContainer;
-        private Config _config;
+        private readonly Config _config;
 
         public PlayerReactionOnHeightLevelChangeService(PlayerContainer playerContainer, Config config)
         {
@@ -20,10 +20,12 @@ namespace Project.PlayerLogic
 
             int level = switchHeightLevelContext.Level;
 
-            float size = _config._heightLevelTransitionInfo[level - 1].PlayerHeightLevelInfo.Size;
-
-            _playerContainer.Player.PlayerController.SetXSpeed(size);
-            _playerContainer.Player.PlayerController.SetYSpeed(size);
+            PlayerHeightLevelInfo heightLevelInfo = _config.HeightLevelTransitionInfos[level - 1].PlayerHeightLevelInfo;
+            
+            float speed = heightLevelInfo.Speed;
+    
+            _playerContainer.Player.PlayerController.SetXSpeed(speed);
+            _playerContainer.Player.PlayerController.SetYSpeed(speed);
         }
 
         private void ScalePlayerView(SwitchHeightLevelContext switchHeightLevelContext)
@@ -45,8 +47,9 @@ namespace Project.PlayerLogic
                 scale *= 1f;
             }
 
-            _playerContainer.Player.PlayerView.transform.DOScale(scale, 0.5f)
-                .SetEase(_config._heightLevelTransitionInfo[level - 1].CameraHeightLevelInfo.PosTransition);
+            CameraHeightLevelInfo cameraHeightLevelInfo = _config.HeightLevelTransitionInfos[level - 1].CameraHeightLevelInfo;
+            
+            _playerContainer.Player.PlayerView.transform.DOScale(scale, 0.5f).SetEase(cameraHeightLevelInfo.PosTransition);
         }
     }
 }

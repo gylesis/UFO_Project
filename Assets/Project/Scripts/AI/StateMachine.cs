@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Project.AI
 {
-    public class StateMachine
+    public class StateMachine : IDisposable
     {
         private readonly Dictionary<Type, IState> _states;
         private IState _current;
@@ -32,7 +32,7 @@ namespace Project.AI
         {
             if (state == _current) return;
 
-            Debug.Log($"Changed state to {state.GetType()}");
+           // Debug.Log($"Changed state to {state.GetType()}");
 
             _current?.Exit();
 
@@ -77,6 +77,11 @@ namespace Project.AI
         public void Tick()
         {
             CheckConditions();
+        }
+
+        public void Dispose()
+        {
+            _current?.Exit();
         }
     }
 

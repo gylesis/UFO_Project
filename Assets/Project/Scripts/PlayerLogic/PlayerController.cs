@@ -8,6 +8,7 @@ namespace Project.PlayerLogic
 {
     public class PlayerController : MyMonoBehaviour
     {
+        private const float SPEED_CONSTANT = 0.01f;
         [SerializeField] private float _lerpSpeed = 0.1f;
         [SerializeField] private float _lerpRotate = 0.1f;
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -17,13 +18,14 @@ namespace Project.PlayerLogic
 
         [SerializeField] private float _krutilka = 1;
 
-
         private HeightRestrictService _heightRestrictService;
 
         private InputService _inputService;
         private Vector3 _movePos;
         public bool IsStickingLocked { get; set; }
 
+        private float _speedMultiplier = 1;
+        
         [Inject]
         private void Init(HeightRestrictService heightRestrictService,
             InputService inputService)
@@ -41,17 +43,6 @@ namespace Project.PlayerLogic
             Rotation();
 
             Move();
-            // Move2();
-        }
-
-        public void SetXSpeed(float speed)
-        {
-            DOVirtual.Float(_speedX, speed, 0.5f, (value => _speedX = value));
-        }
-
-        public void SetYSpeed(float speed)
-        {
-            DOVirtual.Float(_speedY, speed, 0.5f, (value => _speedY = value));
         }
 
         private void Rotation()
@@ -68,11 +59,11 @@ namespace Project.PlayerLogic
             Vector2 radiusVector = CoordinatesService.GetRadiusVector(transform.position);
             Vector3 direction = Vector3.Cross(radiusVector.normalized, Vector3.forward * _inputService.TouchDelta.x);
 
-            Vector3 movePos = transform.position + direction * _speedX;
+            Vector3 movePos = transform.position + direction * ((_speedX * SPEED_CONSTANT) * _speedMultiplier);
 
             var radius = CoordinatesService.GetRadius(transform.position);
 
-            radius += _inputService.TouchDelta.y * _speedY;
+            radius += _inputService.TouchDelta.y * ((_speedY * SPEED_CONSTANT) * _speedMultiplier);
 
             radius = Mathf.Clamp(radius, _heightRestrictService.MinHeight, _heightRestrictService.MaxHeight);
 
@@ -123,6 +114,21 @@ namespace Project.PlayerLogic
         public void StopLerp()
         {
             IsStickingLocked = false;
+        }
+
+        public void SetXSpeed(float speed)
+        {
+            DOVirtual.Float(_speedX, speed, 0.5f, (value => _speedX = value));
+        }
+
+        public void SetYSpeed(float speed)
+        {
+            DOVirtual.Float(_speedY, speed, 0.5f, (value => _speedY = value));
+        }
+
+        public void SetSpeedMultiplier(float multiplier)
+        {
+                
         }
 
         /*private void OnDrawGizmos()

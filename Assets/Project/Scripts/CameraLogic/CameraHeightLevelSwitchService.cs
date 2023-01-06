@@ -18,7 +18,7 @@ namespace Project.CameraLogic
             var level = switchHeightLevelContext.Level;
 
             CameraHeightLevelInfo cameraHeightLevelInfo =
-                _config._heightLevelTransitionInfo[level - 1].CameraHeightLevelInfo;
+                _config.HeightLevelTransitionInfos[level - 1].CameraHeightLevelInfo;
 
             _cameraController.SwitchHeightLevel(cameraHeightLevelInfo);
         }

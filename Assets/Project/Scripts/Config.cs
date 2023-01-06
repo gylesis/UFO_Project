@@ -17,8 +17,10 @@ namespace Project
         public FloatReactiveProperty CameraYSpeedMovement => _cameraYSpeedMovement;
         public FloatReactiveProperty CameraXSpeedMovement => _cameraXSpeedMovement;
 
-        public HeightLevelTransitionInfo[] _heightLevelTransitionInfo;
+        [SerializeField] private HeightLevelTransitionInfo[] _heightLevelTransitionInfo;
 
+        public HeightLevelTransitionInfo[] HeightLevelTransitionInfos => _heightLevelTransitionInfo;
+        
         private void OnValidate()
         {
             for (var index = 0; index < _heightLevelTransitionInfo.Length; index++)
@@ -28,10 +30,11 @@ namespace Project
             }
         }
     }
-
+    
     [Serializable]
     public class BuildingResourcesData
     {
+        public int ResourceToScavenge;
         public int StartResources;
     }
 
@@ -46,7 +49,7 @@ namespace Project
     [Serializable]
     public class PlayerHeightLevelInfo
     {
-        public float Size;
+        public float Speed = 1;
         public AnimationCurve SizeTransition;
     }
 

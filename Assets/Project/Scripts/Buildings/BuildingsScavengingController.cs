@@ -18,11 +18,13 @@ namespace Project.Buildings
 
         private bool _isPlayerScavenging;
         private BuildingScavengeService _buildingScavengeService;
+        private UpgradesService _upgradesService;
 
         public BuildingsScavengingController(PlayerContainer playerContainer,
             BuildingScavengeConditionService buildingScavengeConditionService,
-            BuildingScavengeService buildingScavengeService)
+            BuildingScavengeService buildingScavengeService, UpgradesService upgradesService)
         {
+            _upgradesService = upgradesService;
             _buildingScavengeService = buildingScavengeService;
             _buildingScavengeConditionService = buildingScavengeConditionService;
             _playerContainer = playerContainer;
@@ -61,7 +63,8 @@ namespace Project.Buildings
 
             _scavengeStream?.Dispose();
 
-            _scavengeStream = Observable.Interval(TimeSpan.FromMilliseconds(1000)).Subscribe(((_) =>
+            TimeSpan fromMilliseconds = TimeSpan.FromSeconds(1 * _upgradesService.GetScavengeSpeedMultiplier());
+            _scavengeStream = Observable.Interval(fromMilliseconds).Subscribe(((_) =>
             {
                 if (_buildingScavengeService.AbleToScavenge(building) == false)
                 {

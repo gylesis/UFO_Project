@@ -2,6 +2,7 @@
 using Project.AI;
 using Project.Buildings;
 using Project.CameraLogic;
+using Project.Infrastructure;
 using Project.MotherbaseLogic;
 using Project.PlayerLogic;
 using Project.Quests;
@@ -52,8 +53,12 @@ namespace Project
             Container.BindInterfacesAndSelfTo<BuildingResourcesController>().AsSingle().NonLazy();
 
             Container.Bind<AADStatesFactory>().AsSingle();
+            
+            Container.Bind<SaveDataLoadAndSaveService>().AsSingle().NonLazy();
 
+            
             Container.Bind<BuildingScavengeService>().AsSingle();
+           
 
             Container.BindFactory<MotherBaseSpawnContext, MotherBase, MotherBaseFactory>()
                 .FromComponentInNewPrefab(_motherBasePrefab).AsSingle();
