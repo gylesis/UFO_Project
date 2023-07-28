@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectDistance: 15
-  _angleDetection: 70
+  _angleDetection: 75
   <Krutilka>k__BackingField: {fileID: 8487707879255101128}
   <SpriteRenderer>k__BackingField: {fileID: 8487707880085600745}
 --- !u!1 &8487707880085600744

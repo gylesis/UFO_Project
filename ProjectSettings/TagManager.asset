@@ -40,6 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 293152109
+    locked: 0
+  - name: MovingObjects
+    uniqueID: 833843489
+    locked: 0
+  - name: StaticObjects
+    uniqueID: 2895299017
+    locked: 0
+  - name: Planet
+    uniqueID: 4080359233
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

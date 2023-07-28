@@ -3,7 +3,7 @@ guid: 2b730fbc38af73347b801ae9a8505aa9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -52,7 +52,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -63,11 +63,12 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 512
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -140,10 +141,35 @@ TextureImporter:
     serializedVersion: 2
     sprites: []
     outline: []
-    physicsShape: []
+    physicsShape:
+    - - {x: 211.30322, y: 949.9999}
+      - {x: -169, y: 953}
+      - {x: -389, y: 889}
+      - {x: -522, y: 811}
+      - {x: -692, y: 678}
+      - {x: -860, y: 446}
+      - {x: -923, y: 275}
+      - {x: -950, y: 151.6698}
+      - {x: -950, y: -114.73181}
+      - {x: -940, y: -215}
+      - {x: -836, y: -488}
+      - {x: -656, y: -726}
+      - {x: -436, y: -869}
+      - {x: -159.37701, y: -950}
+      - {x: 181.72668, y: -950}
+      - {x: 418, y: -876}
+      - {x: 601, y: -766}
+      - {x: 758, y: -607}
+      - {x: 889, y: -380}
+      - {x: 950, y: -191.80634}
+      - {x: 950, y: 171.62097}
+      - {x: 894, y: 366}
+      - {x: 820, y: 519}
+      - {x: 655, y: 717}
+      - {x: 466, y: 850}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []

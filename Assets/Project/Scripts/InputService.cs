@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Project
 {
-    public class InputService : ITickable
+    public class InputService : ITickable, IInputService
     {
         private float _deltaPositionX;
         private float _deltaPositionY;
@@ -22,6 +22,8 @@ namespace Project
         {
             //MobileInput();
 
+            if (IsActive == false) return;
+            
             if (_isMobilePlatform)
                 MobileInput();
             else
@@ -30,8 +32,6 @@ namespace Project
 
         private void MobileInput()
         {
-            if (IsActive == false) return;
-
             float deltaX = 0;
             float deltaY = 0;
 
@@ -80,8 +80,6 @@ namespace Project
 
         private void StandaloneInput()
         {
-            if (IsActive == false) return;
-
             Vector2 input;
 
             input.y = Input.GetAxis("Vertical") * 5;
@@ -90,4 +88,21 @@ namespace Project
             TouchDelta = input;
         }
     }
+
+    public interface IInputService
+    {
+        
+        
+        
+    }
+
+
+    public class MobileInput
+    {
+        
+        
+        
+    }
+    
+    
 }

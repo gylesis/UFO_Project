@@ -105,7 +105,7 @@ MonoBehaviour:
       OrthographicSize: 14
       YHeight: 33
     PlayerHeightLevelInfo:
-      Speed: 1
+      Speed: 1.5
       SizeTransition:
         serializedVersion: 2
         m_Curve:
@@ -159,7 +159,7 @@ MonoBehaviour:
       OrthographicSize: 50
       YHeight: 23.5
     PlayerHeightLevelInfo:
-      Speed: 0.04
+      Speed: 2
       SizeTransition:
         serializedVersion: 2
         m_Curve:

@@ -77,20 +77,34 @@ namespace Project.AI
 
             Quaternion quaternion = Quaternion.Euler(leftPos);
 
+            Vector3 lookRotation = transform.rotation * transform.up;
+
+
+            Vector3 right = transform.up * Mathf.Sin(_angleDetection * Mathf.Deg2Rad) +
+                            (transform.right * Mathf.Cos(_angleDetection * Mathf.Deg2Rad));
+
+            Quaternion rotation = transform.rotation;
+
+            /*
             var test = new Vector3();
 
             test.x = transform.position.x + Mathf.Sin(_angleDetection * Mathf.Deg2Rad);
             test.y = transform.position.x + Mathf.Cos(_angleDetection * Mathf.Deg2Rad);
 
             Gizmos.DrawLine(transform.position, test);
+            */
 
-            float xRightPos = _detectDistance * Mathf.Sin(_angleDetection * Mathf.Deg2Rad);
-            float yRightPos = _detectDistance * Mathf.Cos(_angleDetection * Mathf.Deg2Rad);
+            //
+
+            float xRightPos = _detectDistance *
+                              Mathf.Sin(_angleDetection * Mathf.Deg2Rad * (lookRotation.z * Mathf.Deg2Rad));
+            float yRightPos = _detectDistance *
+                              Mathf.Cos(_angleDetection * Mathf.Deg2Rad * (lookRotation.z * Mathf.Deg2Rad));
 
             var rightPos = transform.position + new Vector3(xRightPos, yRightPos, 0);
 
             Gizmos.DrawLine(transform.position, leftPos);
-            Gizmos.DrawLine(transform.position, rightPos);
+            Gizmos.DrawLine(transform.position, lookRotation);
         }
 
         private void OnDestroy()

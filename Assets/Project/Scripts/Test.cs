@@ -1,6 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Project
 {
-    public class Test : MonoBehaviour { }
+    [ExecuteInEditMode]
+    public class Test : MonoBehaviour
+    {
+        
+    }
 }
